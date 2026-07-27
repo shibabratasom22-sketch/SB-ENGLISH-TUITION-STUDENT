@@ -38,9 +38,15 @@ function loginUser() {
         msg.style.color="green";
         msg.innerHTML="Login Successful...";
 
-        setTimeout(()=>{
-            window.location.href="dashboard.html";
-        },1000);
+        setTimeout(() => {
+
+    if(studentId === "ADMIN"){
+        window.location.href = "admin.html";
+    }else{
+        window.location.href = "dashboard.html";
+    }
+
+},1000);
 
     })
 
@@ -52,3 +58,20 @@ function loginUser() {
     });
 
 }
+auth.onAuthStateChanged((user)=>{
+
+    if(user){
+
+        if(window.location.pathname.includes("index.html")){
+
+            if(user.email === "admin@sbenglishtuition.app"){
+                window.location.href="admin.html";
+            }else{
+                window.location.href="dashboard.html";
+            }
+
+        }
+
+    }
+
+});
