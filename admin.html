@@ -51,5 +51,37 @@
 
 </div>
 
+<br><br>
+
+<div style="text-align:center;">
+    <button id="logoutBtn">Logout</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
+  authDomain: "sb-english-tuition.firebaseapp.com",
+  projectId: "sb-english-tuition",
+  storageBucket: "sb-english-tuition.firebasestorage.app",
+  messagingSenderId: "162778343838",
+  appId: "1:162778343838:web:f21008cab298e19fa48e8f"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+const auth = firebase.auth();
+
+document.getElementById("logoutBtn").onclick = function () {
+  auth.signOut().then(function () {
+    window.location.href = "index.html";
+  });
+};
+</script>
+
 </body>
 </html>
