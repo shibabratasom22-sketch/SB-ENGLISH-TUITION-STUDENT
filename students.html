@@ -3,43 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Students</title>
+<title>Students - SB English Tuition</title>
 
 <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
 <header class="topbar">
-<h2>Students</h2>
+<h2>👨‍🎓 Student Management</h2>
+<p>SB English Tuition</p>
 </header>
 
+<div class="container">
+
 <div class="form-card">
+
+<h3>Add New Student</h3>
 
 <input type="text" id="studentName" placeholder="Student Name">
 
 <input type="text" id="studentClass" placeholder="Class">
 
-<input type="text" id="guardianPhone" placeholder="Guardian Phone">
+<input type="text" id="studentPhone" placeholder="Phone Number">
 
 <input type="password" id="studentPassword" placeholder="Password">
 
-<button id="addStudentBtn">
-Add Student
+<br><br>
+
+<button id="saveStudentBtn">➕ Save Student</button>
+
+<p id="saveMsg"></p>
+
+</div>
+
+<br>
+
+<div class="form-card">
+
+<h3>Student List</h3>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="8">
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Class</th>
+</tr>
+
+</thead>
+
+<tbody id="studentTable">
+
+<tr>
+
+<td colspan="3" align="center">
+
+No Students Found
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<br>
+
+<div style="text-align:center;">
+
+<button onclick="location.href='admin.html'">
+
+⬅ Back to Admin
+
 </button>
 
 </div>
 
-<div class="list-card">
-
-<h3>Student List</h3>
-
-<div id="studentList">
-No students yet.
 </div>
 
-</div>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
 <script src="js/students.js"></script>
 
