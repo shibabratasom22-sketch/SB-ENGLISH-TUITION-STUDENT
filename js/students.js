@@ -59,7 +59,11 @@ async function generateStudentId(){
 
 const saveBtn = document.getElementById("saveStudentBtn");
 const msg = document.getElementById("saveMsg");
+// ===============================
+// Edit Mode
+// ===============================
 
+let editingDocId = null;
 // ===============================
 // Test
 // ===============================
