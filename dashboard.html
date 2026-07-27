@@ -77,6 +77,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+const db = firebase.firestore();
 
 auth.onAuthStateChanged((user)=>{
 const db = firebase.firestore();
@@ -86,20 +87,12 @@ const db = firebase.firestore();
 
         if(email === "admin@sbenglishtuition.app"){
 
-            document.getElementById("welcomeName").innerHTML="Welcome Admin";
-            document.getElementById("studentInfo").innerHTML=email;
+    window.location.href = "admin.html";
+    return;
 
-        }else{
+}else{
 
-            const studentId=email.split("@")[0].toUpperCase();
-
-            document.getElementById("welcomeName").innerHTML="Welcome Student";
-
-            document.getElementById("studentInfo").innerHTML="Student ID : "+studentId;
-
-        }
-
-    }else{
+  
 
         window.location.href="index.html";
 
