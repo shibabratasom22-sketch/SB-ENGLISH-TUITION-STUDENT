@@ -1,89 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Students - SB English Tuition</title>
 
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
 <header class="topbar">
-<h2>👨‍🎓 Student Management</h2>
-<p>SB English Tuition</p>
+    <h2>👨‍🎓 Student Management</h2>
+    <p>SB English Tuition</p>
 </header>
 
 <div class="container">
 
-<div class="form-card">
+    <div class="form-card">
 
-<h3>Add New Student</h3>
+        <h3>Add New Student</h3>
 
-<input type="text" id="studentName" placeholder="Student Name">
+        <input type="text" id="studentName" placeholder="Student Name">
 
-<input type="text" id="studentClass" placeholder="Class">
+        <input type="text" id="guardianName" placeholder="Guardian Name">
 
-<input type="text" id="studentPhone" placeholder="Phone Number">
+        <input type="text" id="phone" placeholder="Phone Number">
 
-<input type="password" id="studentPassword" placeholder="Password">
+        <input type="text" id="studentClass" placeholder="Class">
 
-<br><br>
+        <input type="number" id="monthlyFee" placeholder="Monthly Fee">
 
-<button id="saveStudentBtn">➕ Save Student</button>
+        <br><br>
 
-<p id="saveMsg"></p>
+        <button id="saveStudentBtn">➕ Save Student</button>
 
-</div>
+        <p id="saveMsg"></p>
 
-<br>
+    </div>
 
-<div class="form-card">
+    <br>
 
-<h3>Student List</h3>
+    <div class="form-card">
 
-<table width="100%" border="1" cellspacing="0" cellpadding="8">
+        <h3>Student List</h3>
 
-<thead>
+        <table width="100%" border="1" cellspacing="0" cellpadding="8">
 
-<tr>
-<th>ID</th>
-<th>Name</th>
-<th>Class</th>
-</tr>
+            <thead>
 
-</thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                </tr>
 
-<tbody id="studentTable">
+            </thead>
 
-<tr>
+            <tbody id="studentTable">
 
-<td colspan="3" align="center">
+                <tr>
+                    <td colspan="3" align="center">
+                        No Students Found
+                    </td>
+                </tr>
 
-No Students Found
+            </tbody>
 
-</td>
+        </table>
 
-</tr>
+    </div>
 
-</tbody>
+    <br>
 
-</table>
+    <div style="text-align:center;">
 
-</div>
+        <button onclick="location.href='admin.html'">
+            ⬅ Back to Admin
+        </button>
 
-<br>
-
-<div style="text-align:center;">
-
-<button onclick="location.href='admin.html'">
-
-⬅ Back to Admin
-
-</button>
-
-</div>
+    </div>
 
 </div>
 
