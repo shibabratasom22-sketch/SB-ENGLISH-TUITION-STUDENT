@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SB English Tuition</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<h1>SB English Tuition</h1>
+
+<h2>Welcome</h2>
+
+<p id="userEmail"></p>
+
+<button id="logoutBtn">Logout</button>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
+
+authDomain: "sb-english-tuition.firebaseapp.com",
+
+projectId: "sb-english-tuition",
+
+storageBucket: "sb-english-tuition.firebasestorage.app",
+
+messagingSenderId: "162778343838",
+
+appId: "1:162778343838:web:f21008cab298e19fa48e8f"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+auth.onAuthStateChanged((user)=>{
+
+if(user){
+
+document.getElementById("userEmail").innerHTML=user.email;
+
+}else{
+
+window.location.href="index.html";
+
+}
+
+});
+
+document.getElementById("logoutBtn").onclick=()=>{
+
+auth.signOut();
+
+};
+
+</script>
+
+</body>
+
+</html>
