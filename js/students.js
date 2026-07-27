@@ -95,7 +95,28 @@ async function saveStudent(){
     saveBtn.disabled = true;
     saveBtn.textContent = "Saving...";
 
-    try{
+ try{
+
+    if(editingDocId){
+
+        await db.collection("students").doc(editingDocId).update({
+
+            name: name,
+            guardian: guardian,
+            phone: phone,
+            studentClass: studentClass,
+            monthlyFee: Number(monthlyFee)
+
+        });
+
+        msg.style.color = "green";
+        msg.textContent = "Student updated successfully.";
+
+        editingDocId = null;
+
+        saveBtn.textContent = "➕ Save Student";
+
+    }else{
 
         const studentId = await generateStudentId();
 
@@ -114,15 +135,25 @@ async function saveStudent(){
 
         msg.style.color = "green";
         msg.textContent = "Student added successfully.";
-await loadStudents();
-        // Reset Form
-        document.getElementById("studentName").value = "";
-        document.getElementById("guardianName").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("studentClass").selectedIndex = 0;
-        document.getElementById("monthlyFee").value = "";
 
-    }catch(error){
+    }
+
+    await loadStudents();
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("guardianName").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("studentClass").value = "";
+    document.getElementById("monthlyFee").value = "";
+
+}catch(error){
+
+    console.error(error);
+
+    msg.style.color = "red";
+    msg.textContent = error.message;
+
+ }
 
         console.error(error);
 
