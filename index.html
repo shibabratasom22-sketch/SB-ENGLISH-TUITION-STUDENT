@@ -73,9 +73,11 @@
 </nav>
 
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
+<script>
 const firebaseConfig = {
   apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
   authDomain: "sb-english-tuition.firebaseapp.com",
@@ -85,8 +87,9 @@ const firebaseConfig = {
   appId: "1:162778343838:web:f21008cab298e19fa48e8f"
 };
 
-initializeApp(firebaseConfig);
-console.log("Firebase Connected Successfully");
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 </script>
 
 <script src="js/app.js"></script>
