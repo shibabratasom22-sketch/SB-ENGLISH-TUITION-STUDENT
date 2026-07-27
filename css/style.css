@@ -87,3 +87,42 @@ body{
 .bottom-nav div{
     text-align:center;
 }
+.login-card{
+    width:90%;
+    margin:25px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.login-card h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.login-card input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:2px solid #FFC107;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.login-card button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#FFC107;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#loginMsg{
+    margin-top:15px;
+    text-align:center;
+    color:red;
+}
