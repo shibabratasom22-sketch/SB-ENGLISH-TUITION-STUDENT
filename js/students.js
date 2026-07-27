@@ -65,3 +65,69 @@ const msg = document.getElementById("saveMsg");
 // ===============================
 
 console.log("Students Module Loaded Successfully");
+// ===============================
+// Save Student
+// ===============================
+
+saveBtn.addEventListener("click", saveStudent);
+
+async function saveStudent(){
+
+    const name = document.getElementById("studentName").value.trim();
+    const guardian = document.getElementById("guardianName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const studentClass = document.getElementById("studentClass").value;
+    const monthlyFee = document.getElementById("monthlyFee").value;
+
+    // Validation
+    if(name === "" || guardian === "" || phone === "" || studentClass === "" || monthlyFee === ""){
+
+        msg.style.color = "red";
+        msg.textContent = "Please fill all fields.";
+        return;
+
+    }
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Saving...";
+
+    try{
+
+        const studentId = await generateStudentId();
+
+        await db.collection("students").add({
+
+            studentId: studentId,
+            name: name,
+            guardian: guardian,
+            phone: phone,
+            studentClass: studentClass,
+            monthlyFee: Number(monthlyFee),
+            active: true,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+        msg.style.color = "green";
+        msg.textContent = "Student added successfully.";
+
+        // Reset Form
+        document.getElementById("studentName").value = "";
+        document.getElementById("guardianName").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("studentClass").selectedIndex = 0;
+        document.getElementById("monthlyFee").value = "";
+
+    }catch(error){
+
+        console.error(error);
+
+        msg.style.color = "red";
+        msg.textContent = "Failed to save student.";
+
+    }
+
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save Student";
+
+}
