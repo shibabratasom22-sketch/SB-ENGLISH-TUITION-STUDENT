@@ -36,7 +36,7 @@ auth.onAuthStateChanged(function(user){
         window.location.href = "dashboard.html";
         return;
     }
-
+loadStudents();
 });
 
 // ===============================
