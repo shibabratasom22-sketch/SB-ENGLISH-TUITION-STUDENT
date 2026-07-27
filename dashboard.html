@@ -19,19 +19,12 @@
 <p id="studentInfo"></p>
 
 <div class="menu">
-
 <div class="card"><h3>📚 Books</h3></div>
-
 <div class="card"><h3>📝 Homework</h3></div>
-
 <div class="card"><h3>📢 Notice</h3></div>
-
 <div class="card"><h3>💰 Fees</h3></div>
-
 <div class="card"><h3>📊 Results</h3></div>
-
 <div class="card"><h3>👤 Profile</h3></div>
-
 </div>
 
 <br>
@@ -45,9 +38,8 @@
 <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
 <script>
-
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
   authDomain: "sb-english-tuition.firebaseapp.com",
   projectId: "sb-english-tuition",
   storageBucket: "sb-english-tuition.firebasestorage.app",
@@ -62,31 +54,30 @@ const db = firebase.firestore();
 
 auth.onAuthStateChanged(function(user){
 
-    if(!user){
-        window.location.href="index.html";
+    if (!user) {
+        window.location.href = "index.html";
         return;
     }
 
-    if(user.email==="admin@sbenglishtuition.app"){
-        window.location.href="admin.html";
+    if (user.email === "admin@sbenglishtuition.app") {
+        window.location.href = "admin.html";
         return;
     }
 
-    const studentId=user.email.split("@")[0].toUpperCase();
+    const studentId = user.email.split("@")[0].toUpperCase();
 
-    document.getElementById("studentInfo").innerHTML=
-    "Student ID : "+studentId;
+    document.getElementById("studentInfo").innerHTML =
+        "Student ID : " + studentId;
 
 });
 
-document.getElementById("logoutBtn").addEventListener("click",function(){
+document.getElementById("logoutBtn").addEventListener("click", function () {
 
-    auth.signOut().then(function(){
-        window.location.href="index.html";
+    auth.signOut().then(function () {
+        window.location.href = "index.html";
     });
 
 });
-
 </script>
 
 </body>
