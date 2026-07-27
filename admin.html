@@ -54,13 +54,14 @@
 <br><br>
 
 <div style="text-align:center;">
-    <button id="logoutBtn">Logout</button>
+<button id="logoutBtn">🚪 Logout</button>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
 
 <script>
+
 const firebaseConfig = {
   apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
   authDomain: "sb-english-tuition.firebaseapp.com",
@@ -71,16 +72,28 @@ const firebaseConfig = {
 };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
 }
 
 const auth = firebase.auth();
 
-document.getElementById("logoutBtn").onclick = function () {
-  auth.signOut().then(function () {
-    window.location.href = "index.html";
-  });
-};
+auth.onAuthStateChanged(function(user){
+
+    if(!user){
+        window.location.href="index.html";
+        return;
+    }
+
+});
+
+document.getElementById("logoutBtn").addEventListener("click",function(){
+
+    auth.signOut().then(function(){
+        window.location.href="index.html";
+    });
+
+});
+
 </script>
 
 </body>
