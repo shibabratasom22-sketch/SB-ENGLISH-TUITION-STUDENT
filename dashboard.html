@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Student Dashboard</title>
 
 <link rel="stylesheet" href="css/style.css">
@@ -15,41 +14,23 @@
 
 <h1>📘 SB English Tuition</h1>
 
-<h2 id="welcomeName">Welcome</h2>
+<h2 id="welcomeName">Welcome Student</h2>
 
 <p id="studentInfo"></p>
 
 <div class="menu">
 
-<div class="card">
-📚
-<h3>Books</h3>
-</div>
+<div class="card"><h3>📚 Books</h3></div>
 
-<div class="card">
-📝
-<h3>Homework</h3>
-</div>
+<div class="card"><h3>📝 Homework</h3></div>
 
-<div class="card">
-📢
-<h3>Notice</h3>
-</div>
+<div class="card"><h3>📢 Notice</h3></div>
 
-<div class="card">
-💰
-<h3>Fees</h3>
-</div>
+<div class="card"><h3>💰 Fees</h3></div>
 
-<div class="card">
-📊
-<h3>Results</h3>
-</div>
+<div class="card"><h3>📊 Results</h3></div>
 
-<div class="card">
-👤
-<h3>Profile</h3>
-</div>
+<div class="card"><h3>👤 Profile</h3></div>
 
 </div>
 
@@ -66,7 +47,7 @@
 <script>
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
+  apiKey: "YOUR_API_KEY",
   authDomain: "sb-english-tuition.firebaseapp.com",
   projectId: "sb-english-tuition",
   storageBucket: "sb-english-tuition.firebasestorage.app",
@@ -79,30 +60,28 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-auth.onAuthStateChanged((user)=>{
+auth.onAuthStateChanged(function(user){
 
     if(!user){
         window.location.href="index.html";
         return;
     }
 
-    const email = user.email;
-
-    if(email === "admin@sbenglishtuition.app"){
+    if(user.email==="admin@sbenglishtuition.app"){
         window.location.href="admin.html";
         return;
     }
 
-    const studentId = email.split("@")[0].toUpperCase();
+    const studentId=user.email.split("@")[0].toUpperCase();
 
-    document.getElementById("welcomeName").innerHTML="Welcome Student";
-    document.getElementById("studentInfo").innerHTML="Student ID : " + studentId;
+    document.getElementById("studentInfo").innerHTML=
+    "Student ID : "+studentId;
 
 });
 
-document.getElementById("logoutBtn").addEventListener("click",()=>{
+document.getElementById("logoutBtn").addEventListener("click",function(){
 
-    auth.signOut().then(()=>{
+    auth.signOut().then(function(){
         window.location.href="index.html";
     });
 
