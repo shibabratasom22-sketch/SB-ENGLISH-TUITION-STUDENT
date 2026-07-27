@@ -135,29 +135,29 @@ await loadStudents();
 // Load Students
 // ===============================
 
-async function loadStudents(){
+async function loadStudents() {
 
     const table = document.getElementById("studentTable");
 
-    table.innerHTML = "<tr><td colspan='3' align='center'>Loading...</td></tr>";
+    table.innerHTML = "<tr><td colspan='4' align='center'>Loading...</td></tr>";
 
-    try{
+    try {
 
         const snapshot = await db.collection("students")
-            .orderBy("createdAt","desc")
+            .orderBy("createdAt", "desc")
             .get();
 
-        if(snapshot.empty){
+        if (snapshot.empty) {
 
-            table.innerHTML = "<tr><td colspan='3' align='center'>No Students Found</td></tr>";
+            table.innerHTML =
+            "<tr><td colspan='4' align='center'>No Students Found</td></tr>";
 
             return;
-
         }
 
         table.innerHTML = "";
 
-        snapshot.forEach(function(doc){
+        snapshot.forEach(function(doc) {
 
             const student = doc.data();
 
@@ -166,18 +166,46 @@ async function loadStudents(){
                 <td>${student.studentId}</td>
                 <td>${student.name}</td>
                 <td>${student.studentClass}</td>
+                <td>
+                    <button onclick="deleteStudent('${doc.id}')">🗑️ Delete</button>
+                </td>
             </tr>
             `;
 
         });
 
-    }catch(error){
+    } catch (error) {
 
         console.error(error);
 
         table.innerHTML =
-        "<tr><td colspan='3' align='center'>Failed to load students</td></tr>";
+        "<tr><td colspan='4' align='center'>Failed to load students</td></tr>";
 
     }
 
 }
+// ===============================
+// Delete Student
+// ===============================
+
+window.deleteStudent = async function(docId){
+
+    if(!confirm("Delete this student?")) return;
+
+    try{
+
+        await db.collection("students").doc(docId).delete();
+
+        alert("Student deleted successfully.");
+
+        loadStudents();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert("Failed to delete student.");
+
+    }
+
+};
