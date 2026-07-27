@@ -110,7 +110,7 @@ async function saveStudent(){
 
         msg.style.color = "green";
         msg.textContent = "Student added successfully.";
-
+await loadStudents();
         // Reset Form
         document.getElementById("studentName").value = "";
         document.getElementById("guardianName").value = "";
