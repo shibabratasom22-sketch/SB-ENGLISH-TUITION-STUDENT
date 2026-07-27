@@ -131,3 +131,53 @@ async function saveStudent(){
     saveBtn.textContent = "Save Student";
 
 }
+// ===============================
+// Load Students
+// ===============================
+
+async function loadStudents(){
+
+    const table = document.getElementById("studentTable");
+
+    table.innerHTML = "<tr><td colspan='3' align='center'>Loading...</td></tr>";
+
+    try{
+
+        const snapshot = await db.collection("students")
+            .orderBy("createdAt","desc")
+            .get();
+
+        if(snapshot.empty){
+
+            table.innerHTML = "<tr><td colspan='3' align='center'>No Students Found</td></tr>";
+
+            return;
+
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach(function(doc){
+
+            const student = doc.data();
+
+            table.innerHTML += `
+            <tr>
+                <td>${student.studentId}</td>
+                <td>${student.name}</td>
+                <td>${student.studentClass}</td>
+            </tr>
+            `;
+
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        table.innerHTML =
+        "<tr><td colspan='3' align='center'>Failed to load students</td></tr>";
+
+    }
+
+}
