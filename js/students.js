@@ -196,7 +196,8 @@ async function loadStudents() {
                 <td>${student.name}</td>
                 <td>${student.studentClass}</td>
                 <td>
-                    <button onclick="deleteStudent('${doc.id}')">🗑️ Delete</button>
+                    <button onclick="editStudent('${doc.id}')">✏️ Edit</button>
+<button onclick="deleteStudent('${doc.id}')">🗑️ Delete</button>
                 </td>
             </tr>
             `;
