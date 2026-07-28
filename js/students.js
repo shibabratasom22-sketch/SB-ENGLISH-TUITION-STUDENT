@@ -214,6 +214,48 @@ async function loadStudents() {
     }
 
 }
+
+// ===============================
+// Edit Student
+// ===============================
+
+window.editStudent = async function(docId){
+
+    try{
+
+        const doc = await db.collection("students").doc(docId).get();
+
+        if(!doc.exists){
+            alert("Student not found.");
+            return;
+        }
+
+        const student = doc.data();
+
+        editingDocId = docId;
+
+        document.getElementById("studentName").value = student.name;
+        document.getElementById("guardianName").value = student.guardian;
+        document.getElementById("phone").value = student.phone;
+        document.getElementById("studentClass").value = student.studentClass;
+        document.getElementById("monthlyFee").value = student.monthlyFee;
+
+        saveBtn.textContent = "✏️ Update Student";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }catch(error){
+
+        console.error(error);
+        alert("Failed to load student.");
+
+    }
+
+};
+
 // ===============================
 // Delete Student
 // ===============================
