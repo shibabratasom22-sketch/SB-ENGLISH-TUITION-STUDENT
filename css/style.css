@@ -156,3 +156,60 @@ transition:.3s;
 .card:hover{
 transform:scale(1.05);
 }
+
+/* =========================
+   Modern Header
+========================= */
+
+body{
+    background:#f4f7fb;
+    margin:0;
+    font-family:Arial,sans-serif;
+}
+
+.top-header{
+    background:linear-gradient(135deg,#FFD54F,#FF9800);
+    color:white;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:0 0 25px 25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-circle{
+    width:60px;
+    height:60px;
+    background:white;
+    color:#FF9800;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+
+.top-header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.top-header p{
+    margin:4px 0 0;
+    font-size:14px;
+}
+
+.admin-badge{
+    background:white;
+    color:#FF9800;
+    padding:8px 16px;
+    border-radius:25px;
+    font-weight:bold;
+}
