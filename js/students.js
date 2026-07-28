@@ -155,13 +155,7 @@ async function saveStudent(){
 
  }
 
-        console.error(error);
-
-        msg.style.color = "red";
-        msg.textContent = "Failed to save student.";
-
-    }
-
+      
     saveBtn.disabled = false;
     saveBtn.textContent = "Save Student";
 
