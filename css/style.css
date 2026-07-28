@@ -213,3 +213,71 @@ body{
     border-radius:25px;
     font-weight:bold;
 }
+
+/* =========================
+   FORM CARD
+========================= */
+
+.container{
+    padding:15px;
+}
+
+.form-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.form-card h3{
+
+    margin-top:0;
+
+    color:#ff9800;
+
+}
+
+.form-card input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:10px 0;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    box-sizing:border-box;
+
+}
+
+#saveStudentBtn{
+
+    width:100%;
+
+    background:#ff9800;
+
+    color:white;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
