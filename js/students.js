@@ -176,6 +176,9 @@ async function loadStudents() {
             .orderBy("createdAt", "desc")
             .get();
 
+const studentCount = document.getElementById("studentCount");
+studentCount.innerHTML = `<b>Total Students: ${snapshot.size}</b>`;
+      
         if (snapshot.empty) {
 
             table.innerHTML =
