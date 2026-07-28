@@ -284,3 +284,40 @@ window.deleteStudent = async function(docId){
     }
 
 };
+
+// ===============================
+// Search Student
+// ===============================
+
+window.searchStudent = function(){
+
+    const input = document.getElementById("searchStudent");
+    const filter = input.value.toUpperCase();
+
+    const table = document.getElementById("studentTable");
+    const rows = table.getElementsByTagName("tr");
+
+    for(let i = 0; i < rows.length; i++){
+
+        const id = rows[i].getElementsByTagName("td")[0];
+        const name = rows[i].getElementsByTagName("td")[1];
+
+        if(id && name){
+
+            const idText = id.textContent || id.innerText;
+            const nameText = name.textContent || name.innerText;
+
+            if(
+                idText.toUpperCase().indexOf(filter) > -1 ||
+                nameText.toUpperCase().indexOf(filter) > -1
+            ){
+                rows[i].style.display = "";
+            }else{
+                rows[i].style.display = "none";
+            }
+
+        }
+
+    }
+
+};
