@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SB English Tuition Library</title>
+<title>SB English Tuition - Digital Library</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/books.css">
@@ -19,155 +20,178 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="library-page">
 
-<div class="library-header">
+    <!-- Header -->
 
-<h1>📚 Digital Library</h1>
+    <div class="library-header">
 
-<p>
-Notes • Books • PDF • Images
-</p>
+        <h1>
+            📚 Digital Library
+        </h1>
 
-</div>
-
-
-<div class="search-box">
-
-<input
-type="text"
-id="searchBook"
-placeholder="Search books..."
-onkeyup="searchBooks()">
-
-</div>
-
-
-<div class="category-grid">
-
-<div class="category-card" data-class="VI">
-<h2>VI</h2>
-<p>Class Six</p>
-</div>
-
-<div class="category-card" data-class="VII">
-<h2>VII</h2>
-<p>Class Seven</p>
-</div>
-
-<div class="category-card" data-class="VIII">
-<h2>VIII</h2>
-<p>Class Eight</p>
-</div>
-
-<div class="category-card" data-class="IX">
-<h2>IX</h2>
-<p>Class Nine</p>
-</div>
-
-<div class="category-card" data-class="X">
-<h2>X</h2>
-<p>Class Ten</p>
-</div>
-
-<div class="category-card" data-class="XI">
-<h2>XI</h2>
-<p>Class Eleven</p>
-</div>
-
-<div class="category-card" data-class="XII">
-<h2>XII</h2>
-<p>Class Twelve</p>
-</div>
-
-</div>
-
-
-<div id="booksContainer">
-
-</div>
-
-
-<div id="uploadButton" class="floating-upload">
-
-<!-- Upload Modal -->
-
-<div id="uploadModal" class="upload-modal">
-
-    <div class="upload-box">
-
-        <h2>📚 Upload New Book</h2>
-
-        <label>Book Title</label>
-
-        <input
-        type="text"
-        id="bookTitle"
-        placeholder="Enter Book Name">
-
-        <label>Class</label>
-
-        <select id="bookClass">
-
-            <option value="">Select Class</option>
-
-            <option>VI</option>
-            <option>VII</option>
-            <option>VIII</option>
-            <option>IX</option>
-            <option>X</option>
-            <option>XI</option>
-            <option>XII</option>
-
-        </select>
-
-        <label>Choose File</label>
-
-        <input
-        type="file"
-        id="bookFile"
-        accept=".pdf,image/*">
-
-        <br><br>
-
-        <progress
-        id="uploadProgress"
-        value="0"
-        max="100">
-        </progress>
-
-        <br><br>
-
-        <button id="uploadBookBtn">
-
-            ⬆ Upload
-
-        </button>
-
-        <button id="closeUploadBtn">
-
-            ✖ Close
-
-        </button>
+        <p>
+            Books • Notes • PDF • Images
+        </p>
 
     </div>
 
-</div>
-  
-<i class="fa-solid fa-plus"></i>
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchBook"
+            placeholder="Search Books..."
+            onkeyup="searchBooks()">
+
+    </div>
+
+    <!-- Class Categories -->
+
+    <div class="category-grid">
+
+        <div class="category-card" data-class="VI">
+            <h2>VI</h2>
+            <p>Class Six</p>
+        </div>
+
+        <div class="category-card" data-class="VII">
+            <h2>VII</h2>
+            <p>Class Seven</p>
+        </div>
+
+        <div class="category-card" data-class="VIII">
+            <h2>VIII</h2>
+            <p>Class Eight</p>
+        </div>
+
+        <div class="category-card" data-class="IX">
+            <h2>IX</h2>
+            <p>Class Nine</p>
+        </div>
+
+        <div class="category-card" data-class="X">
+            <h2>X</h2>
+            <p>Class Ten</p>
+        </div>
+
+        <div class="category-card" data-class="XI">
+            <h2>XI</h2>
+            <p>Class Eleven</p>
+        </div>
+
+        <div class="category-card" data-class="XII">
+            <h2>XII</h2>
+            <p>Class Twelve</p>
+        </div>
+
+    </div>
+
+    <!-- Books Container -->
+
+    <div id="booksContainer">
+
+    </div>
+
+        <!-- Floating Upload Button -->
+
+    <div id="uploadButton" class="floating-upload">
+
+        <i class="fa-solid fa-plus"></i>
+
+    </div>
+
+    <!-- Upload Modal -->
+
+    <div id="uploadModal" class="upload-modal">
+
+        <div class="upload-box">
+
+            <h2>📚 Upload New Book</h2>
+
+            <label>Book Title</label>
+
+            <input
+                type="text"
+                id="bookTitle"
+                placeholder="Enter Book Title">
+
+            <label>Select Class</label>
+
+            <select id="bookClass">
+
+                <option value="">Choose Class</option>
+
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
+
+            </select>
+
+            <label>Select File</label>
+
+            <input
+                type="file"
+                id="bookFile"
+                accept=".pdf,image/*">
+
+            <br><br>
+
+            <progress
+                id="uploadProgress"
+                value="0"
+                max="100"
+                style="width:100%;">
+            </progress>
+
+            <br><br>
+
+            <div class="upload-actions">
+
+                <button
+                    id="uploadBookBtn"
+                    class="upload-btn">
+
+                    <i class="fa-solid fa-upload"></i>
+                    Upload
+
+                </button>
+
+                <button
+                    id="closeUploadBtn"
+                    class="close-btn">
+
+                    <i class="fa-solid fa-xmark"></i>
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        <!-- Firebase -->
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-storage-compat.js"></script>
+
+    <!-- Books JavaScript -->
+
+    <script src="js/books.js"></script>
 
 </div>
-
-
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-storage-compat.js"></script>
-
-<script src="js/books.js"></script>
 
 </body>
+
 </html>
