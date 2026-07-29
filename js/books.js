@@ -162,3 +162,28 @@ async function loadBooks(className){
     }
 
 }
+
+// =======================================
+// Upload Modal
+// =======================================
+
+const uploadModal =
+document.getElementById("uploadModal");
+
+const uploadButton =
+document.getElementById("uploadButton");
+
+const closeUploadBtn =
+document.getElementById("closeUploadBtn");
+
+uploadButton.onclick=function(){
+
+    uploadModal.style.display="flex";
+
+}
+
+closeUploadBtn.onclick=function(){
+
+    uploadModal.style.display="none";
+
+}
