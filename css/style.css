@@ -310,3 +310,73 @@ body{
     flex-direction:column;
     gap:15px;
 }
+
+/* =========================
+   Student Card
+========================= */
+
+.student-card{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    border-left:5px solid #ff9800;
+}
+
+.student-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.student-header h3{
+    margin:0;
+    font-size:20px;
+    color:#222;
+}
+
+.student-header small{
+    color:#777;
+    font-size:13px;
+}
+
+.status-badge{
+    background:#e8f5e9;
+    color:#2e7d32;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.student-card p{
+    margin:8px 0;
+    color:#444;
+}
+
+.student-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.student-actions button{
+    flex:1;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.student-actions button:first-child{
+    background:#2196f3;
+    color:#fff;
+}
+
+.student-actions button:last-child{
+    background:#f44336;
+    color:#fff;
+}
