@@ -88,6 +88,70 @@ onkeyup="searchBooks()">
 
 <div id="uploadButton" class="floating-upload">
 
+<!-- Upload Modal -->
+
+<div id="uploadModal" class="upload-modal">
+
+    <div class="upload-box">
+
+        <h2>📚 Upload New Book</h2>
+
+        <label>Book Title</label>
+
+        <input
+        type="text"
+        id="bookTitle"
+        placeholder="Enter Book Name">
+
+        <label>Class</label>
+
+        <select id="bookClass">
+
+            <option value="">Select Class</option>
+
+            <option>VI</option>
+            <option>VII</option>
+            <option>VIII</option>
+            <option>IX</option>
+            <option>X</option>
+            <option>XI</option>
+            <option>XII</option>
+
+        </select>
+
+        <label>Choose File</label>
+
+        <input
+        type="file"
+        id="bookFile"
+        accept=".pdf,image/*">
+
+        <br><br>
+
+        <progress
+        id="uploadProgress"
+        value="0"
+        max="100">
+        </progress>
+
+        <br><br>
+
+        <button id="uploadBookBtn">
+
+            ⬆ Upload
+
+        </button>
+
+        <button id="closeUploadBtn">
+
+            ✖ Close
+
+        </button>
+
+    </div>
+
+</div>
+  
 <i class="fa-solid fa-plus"></i>
 
 </div>
