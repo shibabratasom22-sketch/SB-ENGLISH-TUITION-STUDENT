@@ -20,68 +20,90 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="library-page">
 
-<div class="library-header">
+    <!-- Header -->
 
-<h1>📚 Digital Library</h1>
+    <div class="library-header">
 
-<p>Books • Notes • PDFs • Images</p>
+        <h1>📚 Digital Library</h1>
 
-</div>
+        <p>
+            Notes • PDFs • Images • Study Materials
+        </p>
 
-<div class="search-box">
+    </div>
 
-<input
-type="text"
-id="searchBook"
-placeholder="Search books..."
-onkeyup="searchBooks()">
+    <!-- Search -->
 
-</div>
+    <div class="search-box">
 
-<div class="category-grid">
+        <input
+            type="text"
+            id="searchBook"
+            placeholder="Search books..."
+            onkeyup="searchBooks()">
 
-<div class="category-card" data-class="VI">
-<h2>VI</h2>
-<p>Class Six</p>
-</div>
+    </div>
 
-<div class="category-card" data-class="VII">
-<h2>VII</h2>
-<p>Class Seven</p>
-</div>
+    <!-- Class Categories -->
 
-<div class="category-card" data-class="VIII">
-<h2>VIII</h2>
-<p>Class Eight</p>
-</div>
+    <div class="category-grid">
 
-<div class="category-card" data-class="IX">
-<h2>IX</h2>
-<p>Class Nine</p>
-</div>
+        <div class="category-card" data-class="VI">
+            <h2>VI</h2>
+            <p>Class Six</p>
+        </div>
 
-<div class="category-card" data-class="X">
-<h2>X</h2>
-<p>Class Ten</p>
-</div>
+        <div class="category-card" data-class="VII">
+            <h2>VII</h2>
+            <p>Class Seven</p>
+        </div>
 
-<div class="category-card" data-class="XI">
-<h2>Class XI</h2>
-<p>Higher Secondary</p>
-</div>
+        <div class="category-card" data-class="VIII">
+            <h2>VIII</h2>
+            <p>Class Eight</p>
+        </div>
 
-<div class="category-card" data-class="XII">
-<h2>Class XII</h2>
-<p>Higher Secondary</p>
-</div>
+        <div class="category-card" data-class="IX">
+            <h2>IX</h2>
+            <p>Class Nine</p>
+        </div>
 
-</div>
+        <div class="category-card" data-class="X">
+            <h2>X</h2>
+            <p>Class Ten</p>
+        </div>
 
-<div id="booksContainer">
+        <div class="category-card" data-class="XI">
+            <h2>XI</h2>
+            <p>Class Eleven</p>
+        </div>
 
-</div>
+        <div class="category-card" data-class="XII">
+            <h2>XII</h2>
+            <p>Class Twelve</p>
+        </div>
 
-        <!-- Floating Upload Button -->
+    </div>
+
+    <!-- Books List -->
+
+    <div id="booksContainer">
+
+        <div class="empty-library">
+
+            <i class="fa-solid fa-book"></i>
+
+            <h2>No Books Available</h2>
+
+            <p>
+                Select a class or add your first book.
+            </p>
+
+        </div>
+
+    </div>
+
+            <!-- Floating Upload Button -->
 
     <div id="uploadButton" class="floating-upload">
 
@@ -102,13 +124,13 @@ onkeyup="searchBooks()">
             <input
                 type="text"
                 id="bookTitle"
-                placeholder="Enter Book Title">
+                placeholder="Example: Tense Notes">
 
-            <label>Class</label>
+            <label>Select Class</label>
 
             <select id="bookClass">
 
-                <option value="">Select Class</option>
+                <option value="">Choose Class</option>
 
                 <option value="VI">VI</option>
                 <option value="VII">VII</option>
@@ -129,12 +151,22 @@ onkeyup="searchBooks()">
 
             </select>
 
-            <label>GitHub File URL</label>
+            <label>File Name</label>
 
             <input
-                type="url"
-                id="bookUrl"
-                placeholder="https://...">
+                type="text"
+                id="bookFileName"
+                placeholder="Example: Tense-Notes.pdf">
+
+            <small style="display:block;margin-top:8px;color:#666;line-height:1.5;">
+                Upload the file to:
+                <br>
+                <b>library/ClassName/</b>
+                <br>
+                Example:
+                <br>
+                <code>library/IX/Tense-Notes.pdf</code>
+            </small>
 
             <div class="upload-actions">
 
@@ -148,9 +180,9 @@ onkeyup="searchBooks()">
                 </button>
 
                 <button
+                    type="button"
                     id="closeUploadBtn"
-                    class="close-btn"
-                    type="button">
+                    class="close-btn">
 
                     <i class="fa-solid fa-xmark"></i>
                     Close
@@ -163,7 +195,7 @@ onkeyup="searchBooks()">
 
     </div>
 
-        <!-- Firebase -->
+            <!-- Firebase -->
 
     <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
 
