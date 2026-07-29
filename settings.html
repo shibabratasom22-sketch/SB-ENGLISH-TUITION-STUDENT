@@ -4,28 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Settings - SB English Tuition</title>
+<title>Settings | SB English Tuition</title>
 
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-.setting-box{
-    max-width:500px;
-    margin:20px auto;
-    padding:20px;
+.settings-box{
+max-width:500px;
+margin:25px auto;
+background:#fff;
+padding:20px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
 }
 
-.setting-box input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    font-size:16px;
+.settings-box h3{
+text-align:center;
+margin-bottom:20px;
 }
 
-.setting-box button{
-    width:100%;
-    padding:12px;
-    font-size:16px;
+.settings-box label{
+font-weight:bold;
+display:block;
+margin-top:15px;
+}
+
+.settings-box input{
+width:100%;
+padding:12px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+box-sizing:border-box;
+}
+
+.settings-box button{
+width:100%;
+padding:12px;
+margin-top:20px;
+font-size:16px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.backBtn{
+background:#777;
+color:#fff;
 }
 </style>
 
@@ -38,22 +64,26 @@
 <p>SB English Tuition</p>
 </header>
 
-<div class="setting-box">
+<div class="settings-box">
 
-<h3>Academic Session</h3>
+<h3>General Settings</h3>
 
-<input
-type="text"
-id="session"
-placeholder="2026-27">
+<label>Tuition Name</label>
+<input type="text" id="tuitionName" placeholder="SB English Tuition">
 
-<button id="saveBtn">
-💾 Save
-</button>
+<label>Academic Session</label>
+<input type="text" id="session" placeholder="2026-27">
 
-<br><br>
+<label>Teacher Name</label>
+<input type="text" id="teacherName" placeholder="Your Name">
 
-<button onclick="location.href='admin.html'">
+<label>Contact Number</label>
+<input type="text" id="contact" placeholder="9876543210">
+
+<button id="saveBtn">💾 Save Settings</button>
+
+<button class="backBtn"
+onclick="location.href='admin.html'">
 ⬅ Back to Dashboard
 </button>
 
