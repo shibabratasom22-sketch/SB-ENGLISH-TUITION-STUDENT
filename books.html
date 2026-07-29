@@ -20,78 +20,66 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="library-page">
 
-    <!-- Header -->
+<div class="library-header">
 
-    <div class="library-header">
+<h1>📚 Digital Library</h1>
 
-        <h1>
-            📚 Digital Library
-        </h1>
+<p>Books • Notes • PDFs • Images</p>
 
-        <p>
-            Books • Notes • PDF • Images
-        </p>
+</div>
 
-    </div>
+<div class="search-box">
 
-    <!-- Search -->
+<input
+type="text"
+id="searchBook"
+placeholder="Search books..."
+onkeyup="searchBooks()">
 
-    <div class="search-box">
+</div>
 
-        <input
-            type="text"
-            id="searchBook"
-            placeholder="Search Books..."
-            onkeyup="searchBooks()">
+<div class="category-grid">
 
-    </div>
+<div class="category-card" data-class="VI">
+<h2>VI</h2>
+<p>Class Six</p>
+</div>
 
-    <!-- Class Categories -->
+<div class="category-card" data-class="VII">
+<h2>VII</h2>
+<p>Class Seven</p>
+</div>
 
-    <div class="category-grid">
+<div class="category-card" data-class="VIII">
+<h2>VIII</h2>
+<p>Class Eight</p>
+</div>
 
-        <div class="category-card" data-class="VI">
-            <h2>VI</h2>
-            <p>Class Six</p>
-        </div>
+<div class="category-card" data-class="IX">
+<h2>IX</h2>
+<p>Class Nine</p>
+</div>
 
-        <div class="category-card" data-class="VII">
-            <h2>VII</h2>
-            <p>Class Seven</p>
-        </div>
+<div class="category-card" data-class="X">
+<h2>X</h2>
+<p>Class Ten</p>
+</div>
 
-        <div class="category-card" data-class="VIII">
-            <h2>VIII</h2>
-            <p>Class Eight</p>
-        </div>
+<div class="category-card" data-class="XI">
+<h2>Class XI</h2>
+<p>Higher Secondary</p>
+</div>
 
-        <div class="category-card" data-class="IX">
-            <h2>IX</h2>
-            <p>Class Nine</p>
-        </div>
+<div class="category-card" data-class="XII">
+<h2>Class XII</h2>
+<p>Higher Secondary</p>
+</div>
 
-        <div class="category-card" data-class="X">
-            <h2>X</h2>
-            <p>Class Ten</p>
-        </div>
+</div>
 
-        <div class="category-card" data-class="XI">
-            <h2>XI</h2>
-            <p>Class Eleven</p>
-        </div>
+<div id="booksContainer">
 
-        <div class="category-card" data-class="XII">
-            <h2>XII</h2>
-            <p>Class Twelve</p>
-        </div>
-
-    </div>
-
-    <!-- Books Container -->
-
-    <div id="booksContainer">
-
-    </div>
+</div>
 
         <!-- Floating Upload Button -->
 
@@ -107,7 +95,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
         <div class="upload-box">
 
-            <h2>📚 Upload New Book</h2>
+            <h2>📚 Add New Book</h2>
 
             <label>Book Title</label>
 
@@ -116,11 +104,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 id="bookTitle"
                 placeholder="Enter Book Title">
 
-            <label>Select Class</label>
+            <label>Class</label>
 
             <select id="bookClass">
 
-                <option value="">Choose Class</option>
+                <option value="">Select Class</option>
 
                 <option value="VI">VI</option>
                 <option value="VII">VII</option>
@@ -132,23 +120,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             </select>
 
-            <label>Select File</label>
+            <label>File Type</label>
+
+            <select id="bookType">
+
+                <option value="pdf">📄 PDF</option>
+                <option value="image">🖼 Image</option>
+
+            </select>
+
+            <label>GitHub File URL</label>
 
             <input
-                type="file"
-                id="bookFile"
-                accept=".pdf,image/*">
-
-            <br><br>
-
-            <progress
-                id="uploadProgress"
-                value="0"
-                max="100"
-                style="width:100%;">
-            </progress>
-
-            <br><br>
+                type="url"
+                id="bookUrl"
+                placeholder="https://...">
 
             <div class="upload-actions">
 
@@ -156,14 +142,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                     id="uploadBookBtn"
                     class="upload-btn">
 
-                    <i class="fa-solid fa-upload"></i>
-                    Upload
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Book
 
                 </button>
 
                 <button
                     id="closeUploadBtn"
-                    class="close-btn">
+                    class="close-btn"
+                    type="button">
 
                     <i class="fa-solid fa-xmark"></i>
                     Close
@@ -184,9 +171,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-storage-compat.js"></script>
-
-    <!-- Books JavaScript -->
+    <!-- Books Module -->
 
     <script src="js/books.js"></script>
 
