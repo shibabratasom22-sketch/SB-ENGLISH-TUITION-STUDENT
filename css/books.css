@@ -1,257 +1,405 @@
-/* ===========================================
-   SB ENGLISH TUITION
+/* ===========================
    DIGITAL LIBRARY
-   books.css (Part 1)
-=========================================== */
+=========================== */
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-
-    font-family:Arial, Helvetica, sans-serif;
-
-    background:linear-gradient(135deg,#eef5ff,#f8fbff);
-
-    min-height:100vh;
-
+background:#f5f7fb;
 }
 
 .library-page{
-
-    width:100%;
-    max-width:1200px;
-
-    margin:auto;
-
-    padding:20px;
-
+padding:20px;
+padding-bottom:100px;
 }
 
-/* Header */
-
 .library-header{
-
-    background:linear-gradient(135deg,#2962ff,#00b8d4);
-
-    color:white;
-
-    padding:35px 20px;
-
-    border-radius:25px;
-
-    text-align:center;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.18);
-
+background:linear-gradient(135deg,#2962ff,#00bcd4);
+color:#fff;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+margin-bottom:20px;
 }
 
 .library-header h1{
-
-    font-size:34px;
-
-    margin-bottom:10px;
-
+font-size:30px;
+margin-bottom:8px;
 }
 
 .library-header p{
-
-    font-size:17px;
-
-    opacity:.95;
-
+font-size:15px;
+opacity:.9;
 }
 
-/* Search */
-
 .search-box{
-
-    margin:25px 0;
-
+margin-bottom:20px;
 }
 
 .search-box input{
-
-    width:100%;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:white;
-
-    font-size:16px;
-
-    outline:none;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+font-size:16px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+outline:none;
 }
-
-/* Category Grid */
 
 .category-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-
-    gap:18px;
-
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+gap:15px;
+margin-bottom:25px;
 }
-
-/* Card */
 
 .category-card{
-
-    border-radius:20px;
-
-    color:white;
-
-    padding:25px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-
+background:#fff;
+border-radius:18px;
+padding:18px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
-
-/* Hover */
 
 .category-card:hover{
-
-    transform:translateY(-8px) scale(1.03);
-
+transform:translateY(-5px);
 }
-
-/* Roman Number */
 
 .category-card h2{
-
-    font-size:34px;
-
-    margin-bottom:10px;
-
+color:#2962ff;
+font-size:26px;
+margin-bottom:6px;
 }
-
-/* Text */
 
 .category-card p{
-
-    font-size:15px;
-
+font-size:14px;
+color:#666;
 }
-
-/* Different Colours */
-
-.category-card:nth-child(1){
-
-background:linear-gradient(135deg,#6a11cb,#2575fc);
-
-}
-
-.category-card:nth-child(2){
-
-background:linear-gradient(135deg,#00c853,#64dd17);
-
-}
-
-.category-card:nth-child(3){
-
-background:linear-gradient(135deg,#ff9800,#ff5722);
-
-}
-
-.category-card:nth-child(4){
-
-background:linear-gradient(135deg,#e91e63,#9c27b0);
-
-}
-
-.category-card:nth-child(5){
-
-background:linear-gradient(135deg,#009688,#00bcd4);
-
-}
-
-.category-card:nth-child(6){
-
-background:linear-gradient(135deg,#ff1744,#ff9100);
-
-}
-
-.category-card:nth-child(7){
-
-background:linear-gradient(135deg,#304ffe,#00bfa5);
-
-}
-
-/* Books Area */
 
 #booksContainer{
-
-    margin-top:35px;
-
+display:grid;
+gap:15px;
 }
 
-/* Upload Modal */
+/* ===========================
+   FLOATING UPLOAD BUTTON
+=========================== */
+
+.floating-upload{
+position:fixed;
+right:20px;
+bottom:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:linear-gradient(135deg,#2962ff,#00bcd4);
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:26px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+transition:.3s;
+z-index:1000;
+}
+
+.floating-upload:hover{
+transform:scale(1.08);
+}
+
+/* ===========================
+   UPLOAD MODAL
+=========================== */
 
 .upload-modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+justify-content:center;
+align-items:center;
+z-index:2000;
+padding:20px;
 }
 
 .upload-box{
-    width:92%;
-    max-width:420px;
-    background:#fff;
-    border-radius:20px;
-    padding:20px;
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
+background:#fff;
+width:100%;
+max-width:420px;
+border-radius:22px;
+padding:25px;
+box-shadow:0 20px 40px rgba(0,0,0,.25);
+animation:popup .25s ease;
+}
+
+@keyframes popup{
+
+from{
+opacity:0;
+transform:scale(.9);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+.upload-box h2{
+text-align:center;
+margin-bottom:20px;
+color:#2962ff;
+}
+
+.upload-box label{
+display:block;
+margin:12px 0 6px;
+font-weight:600;
+color:#444;
 }
 
 .upload-box input,
 .upload-box select{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:10px;
-    border:1px solid #ddd;
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:15px;
+outline:none;
 }
 
-.upload-box button{
-    padding:12px 18px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    margin-top:10px;
+.upload-box input:focus,
+.upload-box select:focus{
+border-color:#2962ff;
 }
 
-.floating-upload{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#2962ff;
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
-    cursor:pointer;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
+#uploadProgress{
+width:100%;
+height:10px;
+margin-top:15px;
+}
+
+.upload-actions{
+display:flex;
+gap:12px;
+margin-top:20px;
+}
+
+.upload-btn,
+.close-btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+transition:.25s;
+}
+
+.upload-btn{
+background:#2962ff;
+color:#fff;
+}
+
+.upload-btn:hover{
+background:#1747d1;
+}
+
+.close-btn{
+background:#e0e0e0;
+color:#333;
+}
+
+.close-btn:hover{
+background:#cfcfcf;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:600px){
+
+.library-header h1{
+font-size:24px;
+}
+
+.category-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.upload-box{
+padding:20px;
+}
+
+}
+
+/* ===========================
+   BOOK CARDS
+=========================== */
+
+.book-card{
+background:#ffffff;
+border-radius:18px;
+padding:18px;
+margin-bottom:16px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:.3s;
+animation:fadeUp .35s ease;
+}
+
+.book-card:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+.book-top{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:15px;
+}
+
+.book-icon{
+width:60px;
+height:60px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+color:#fff;
+background:linear-gradient(135deg,#ff6b6b,#ff9800);
+flex-shrink:0;
+}
+
+.book-info{
+flex:1;
+}
+
+.book-title{
+font-size:18px;
+font-weight:700;
+color:#222;
+margin-bottom:6px;
+word-break:break-word;
+}
+
+.book-class{
+display:inline-block;
+padding:5px 12px;
+border-radius:20px;
+background:#e3f2fd;
+color:#1565c0;
+font-size:13px;
+font-weight:600;
+}
+
+.book-actions{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.book-actions button,
+.book-actions a{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+font-size:14px;
+font-weight:600;
+text-decoration:none;
+text-align:center;
+cursor:pointer;
+transition:.25s;
+}
+
+.preview-btn{
+background:#00b894;
+color:#fff;
+}
+
+.preview-btn:hover{
+background:#009b78;
+}
+
+.download-btn{
+background:#2962ff;
+color:#fff;
+}
+
+.download-btn:hover{
+background:#1747d1;
+}
+
+.delete-btn{
+background:#ef5350;
+color:#fff;
+}
+
+.delete-btn:hover{
+background:#d32f2f;
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+.empty-library{
+background:#fff;
+border-radius:18px;
+padding:40px 20px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.empty-library i{
+font-size:60px;
+color:#2962ff;
+margin-bottom:15px;
+}
+
+.empty-library h2{
+font-size:22px;
+margin-bottom:10px;
+color:#333;
+}
+
+.empty-library p{
+color:#777;
+font-size:15px;
+line-height:1.5;
+}
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
 }
