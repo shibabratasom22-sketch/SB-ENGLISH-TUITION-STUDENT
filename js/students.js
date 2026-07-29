@@ -134,14 +134,12 @@ async function saveStudent(){
 
         }
 
-        document.getElementById("studentName").value="";
-        document.getElementById("guardianName").value="";
-        document.getElementById("phone").value="";
-        document.getElementById("studentClass").value="";
-        document.getElementById("monthlyFee").value="";
+        
 
         await loadStudents();
 
+clearForm();
+      
     }catch(error){
 
         console.error(error);
