@@ -1,6 +1,7 @@
 // =====================================
 // SB ENGLISH TUITION
-// books.js (GitHub Version - Part 1)
+// books.js (GitHub Version)
+// Part 1
 // =====================================
 
 // Firebase Config
@@ -14,8 +15,6 @@ const firebaseConfig = {
   appId: "1:162778343838:web:f21008cab298e19fa48e8f"
 };
 
-// Initialize Firebase
-
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
@@ -23,29 +22,42 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-let currentUser = null;
+const GITHUB_BASE =
+"https://shibabratasom22-sketch.github.io/SB-ENGLISH-TUITION-STUDENT/library/";
+
 let isAdmin = false;
+let currentUser = null;
 let selectedClass = "";
 
 // ===============================
-// Authentication
+// Login Check
 // ===============================
 
 auth.onAuthStateChanged(function(user){
 
     if(!user){
-        window.location.href = "index.html";
+
+        window.location.href="index.html";
         return;
+
     }
 
-    currentUser = user;
+    currentUser=user;
 
-    if(user.email === "admin@sbenglishtuition.app"){
-        isAdmin = true;
-        document.getElementById("uploadButton").style.display = "flex";
+    if(user.email==="admin@sbenglishtuition.app"){
+
+        isAdmin=true;
+
+        document
+        .getElementById("uploadButton")
+        .style.display="flex";
+
     }else{
-        isAdmin = false;
-        document.getElementById("uploadButton").style.display = "none";
+
+        document
+        .getElementById("uploadButton")
+        .style.display="none";
+
     }
 
     loadBooks();
@@ -56,49 +68,50 @@ auth.onAuthStateChanged(function(user){
 // Upload Modal
 // ===============================
 
-const uploadModal = document.getElementById("uploadModal");
+const uploadModal=
+document.getElementById("uploadModal");
 
 document
 .getElementById("uploadButton")
-.addEventListener("click",function(){
+.onclick=function(){
 
-    uploadModal.style.display="flex";
+uploadModal.style.display="flex";
 
-});
+};
 
 document
 .getElementById("closeUploadBtn")
-.addEventListener("click",function(){
+.onclick=function(){
 
-    uploadModal.style.display="none";
+uploadModal.style.display="none";
 
-});
+};
 
-window.addEventListener("click",function(e){
+window.onclick=function(e){
 
-    if(e.target===uploadModal){
+if(e.target===uploadModal){
 
-        uploadModal.style.display="none";
+uploadModal.style.display="none";
 
-    }
+}
 
-});
+};
 
 // ===============================
-// Category Selection
+// Class Selection
 // ===============================
 
 document
 .querySelectorAll(".category-card")
 .forEach(function(card){
 
-    card.addEventListener("click",function(){
+card.onclick=function(){
 
-        selectedClass=this.dataset.class;
+selectedClass=this.dataset.class;
 
-        loadBooks(selectedClass);
+loadBooks(selectedClass);
 
-    });
+};
 
 });
 
@@ -124,15 +137,21 @@ async function saveBook(){
     const fileType =
     document.getElementById("bookType").value;
 
-    const fileUrl =
-    document.getElementById("bookUrl").value.trim();
+    const fileName =
+    document.getElementById("bookFileName").value.trim();
 
-    if(!title || !studentClass || !fileType || !fileUrl){
+    if(!title || !studentClass || !fileType || !fileName){
 
         alert("Please fill all fields.");
         return;
 
     }
+
+    const fileUrl =
+    GITHUB_BASE +
+    studentClass +
+    "/" +
+    encodeURIComponent(fileName);
 
     uploadBookBtn.disabled = true;
     uploadBookBtn.textContent = "Saving...";
@@ -144,6 +163,7 @@ async function saveBook(){
             title: title,
             studentClass: studentClass,
             fileType: fileType,
+            fileName: fileName,
             fileUrl: fileUrl,
             uploadedBy: currentUser.email,
             createdAt:
@@ -156,7 +176,7 @@ async function saveBook(){
         document.getElementById("bookTitle").value = "";
         document.getElementById("bookClass").value = "";
         document.getElementById("bookType").value = "pdf";
-        document.getElementById("bookUrl").value = "";
+        document.getElementById("bookFileName").value = "";
 
         uploadModal.style.display = "none";
 
@@ -173,7 +193,8 @@ async function saveBook(){
     }
 
     uploadBookBtn.disabled = false;
-    uploadBookBtn.textContent = "Save Book";
+    uploadBookBtn.innerHTML =
+    '<i class="fa-solid fa-floppy-disk"></i> Save Book';
 
 }
 
@@ -208,6 +229,7 @@ async function loadBooks(classFilter = ""){
                 <h2>No Books Found</h2>
                 <p>Add your first book.</p>
             </div>`;
+
             return;
 
         }
@@ -228,9 +250,9 @@ async function loadBooks(classFilter = ""){
 
 <div class="book-icon">
 <i class="fa-solid ${
-book.fileType==="pdf"
-? "fa-file-pdf"
-: "fa-image"
+book.fileType==="image"
+? "fa-image"
+: "fa-file-pdf"
 }"></i>
 </div>
 
@@ -251,30 +273,38 @@ Class ${book.studentClass}
 <div class="book-actions">
 
 <a
+class="preview-btn"
 href="${book.fileUrl}"
-target="_blank"
-class="preview-btn">
+target="_blank">
 
 Preview
 
 </a>
 
 <a
+class="download-btn"
 href="${book.fileUrl}"
-target="_blank"
-class="download-btn">
+target="_blank">
 
 Download
 
 </a>
 
-${isAdmin
-? `<button
+${isAdmin ?
+
+`<button
 class="delete-btn"
 onclick="deleteBook('${doc.id}')">
+
 Delete
+
 </button>`
-: ""}
+
+:
+
+""
+
+}
 
 </div>
 
@@ -290,7 +320,7 @@ Delete
             <div class="empty-library">
                 <i class="fa-solid fa-book"></i>
                 <h2>No Books</h2>
-                <p>No books available.</p>
+                <p>No books found for this class.</p>
             </div>`;
 
         }
@@ -302,7 +332,7 @@ Delete
         console.error(error);
 
         container.innerHTML =
-        "<p style='color:red;text-align:center'>Failed to load books.</p>";
+        "<p style='text-align:center;color:red;'>Failed to load books.</p>";
 
     }
 
@@ -318,13 +348,14 @@ window.deleteBook = async function(docId){
 
     try{
 
-        await db.collection("books")
+        await db
+        .collection("books")
         .doc(docId)
         .delete();
 
-        loadBooks(selectedClass);
-
         alert("Book deleted successfully.");
+
+        loadBooks(selectedClass);
 
     }
 
@@ -345,12 +376,14 @@ window.deleteBook = async function(docId){
 window.searchBooks = function(){
 
     const filter =
-    document.getElementById("searchBook")
+    document
+    .getElementById("searchBook")
     .value
     .toUpperCase();
 
     const cards =
-    document.getElementsByClassName("book-card");
+    document
+    .getElementsByClassName("book-card");
 
     for(let i=0;i<cards.length;i++){
 
@@ -367,4 +400,3 @@ window.searchBooks = function(){
 };
 
 console.log("SB English Tuition Library Loaded Successfully");
-
