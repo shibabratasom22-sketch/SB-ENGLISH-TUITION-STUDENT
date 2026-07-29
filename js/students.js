@@ -36,18 +36,135 @@ auth.onAuthStateChanged(function(user){
         window.location.href = "dashboard.html";
         return;
     }
-loadStudents();
+
+    loadStudents();
+
 });
 
 // ===============================
 // Generate Student ID
 // ===============================
 
+async function generateStudentId(){
+
+    const snapshot = await db.collection("students").get();
+
+    const count = snapshot.size + 1;
+
+    return "SBET" + String(count).padStart(3,"0");
+
+}
+
+// ===============================
+// Button Reference
+// ===============================
+
+const saveBtn = document.getElementById("saveStudentBtn");
+const msg = document.getElementById("saveMsg");
+
+let editingDocId = null;
+
+console.log("Students Module Loaded");
+
+// ===============================
+// Save Student
+// ===============================
+
+saveBtn.addEventListener("click", saveStudent);
+
+async function saveStudent(){
+
+    const name = document.getElementById("studentName").value.trim();
+    const guardian = document.getElementById("guardianName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const studentClass = document.getElementById("studentClass").value.trim();
+    const monthlyFee = document.getElementById("monthlyFee").value.trim();
+
+    if(!name || !guardian || !phone || !studentClass || !monthlyFee){
+
+        msg.style.color="red";
+        msg.textContent="Please fill all fields.";
+        return;
+
+    }
+
+    saveBtn.disabled=true;
+    saveBtn.textContent="Saving...";
+
+    try{
+
+        if(editingDocId){
+
+            await db.collection("students").doc(editingDocId).update({
+
+                name,
+                guardian,
+                phone,
+                studentClass,
+                monthlyFee:Number(monthlyFee)
+
+            });
+
+            msg.style.color="green";
+            msg.textContent="Student updated successfully.";
+
+            editingDocId=null;
+
+            saveBtn.textContent="➕ Save Student";
+
+        }else{
+
+            const studentId=await generateStudentId();
+
+            await db.collection("students").add({
+
+                studentId,
+                name,
+                guardian,
+                phone,
+                studentClass,
+                monthlyFee:Number(monthlyFee),
+                active:true,
+                createdAt:firebase.firestore.FieldValue.serverTimestamp()
+
+            });
+
+            msg.style.color="green";
+            msg.textContent="Student added successfully.";
+
+        }
+
+        document.getElementById("studentName").value="";
+        document.getElementById("guardianName").value="";
+        document.getElementById("phone").value="";
+        document.getElementById("studentClass").value="";
+        document.getElementById("monthlyFee").value="";
+
+        await loadStudents();
+
+    }catch(error){
+
+        console.error(error);
+
+        msg.style.color="red";
+        msg.textContent=error.message;
+
+    }
+
+    saveBtn.disabled=false;
+    saveBtn.textContent="➕ Save Student";
+
+}
+
+// ===============================
+// Load Students
+// ===============================
+
 async function loadStudents() {
 
-    const table = document.getElementById("studentTable");
+    const container = document.getElementById("studentTable");
 
-    table.innerHTML = "<p style='text-align:center'>Loading students...</p>";
+    container.innerHTML = "<p style='text-align:center'>Loading students...</p>";
 
     try {
 
@@ -58,17 +175,18 @@ async function loadStudents() {
         document.getElementById("studentCount").textContent = snapshot.size;
 
         if (snapshot.empty) {
-            table.innerHTML = "<p style='text-align:center'>No Students Found</p>";
+            container.innerHTML = "<p style='text-align:center'>No Students Found</p>";
             return;
         }
 
-        table.innerHTML = "";
+        container.innerHTML = "";
 
         snapshot.forEach(function(doc){
 
             const student = doc.data();
 
-            table.innerHTML += `
+            container.innerHTML += `
+
 <div class="student-card">
 
     <div class="student-header">
@@ -105,179 +223,17 @@ async function loadStudents() {
     </div>
 
 </div>
+
 `;
+
         });
 
-    } catch (error) {
+    } catch(error){
 
         console.error(error);
 
-        table.innerHTML =
+        container.innerHTML =
         "<p style='text-align:center;color:red;'>Failed to load students.</p>";
-    }
-
-}
-
-// ===============================
-// Button Reference
-// ===============================
-
-const saveBtn = document.getElementById("saveStudentBtn");
-const msg = document.getElementById("saveMsg");
-// ===============================
-// Edit Mode
-// ===============================
-
-let editingDocId = null;
-// ===============================
-// Test
-// ===============================
-
-console.log("Students Module Loaded Successfully");
-// ===============================
-// Save Student
-// ===============================
-
-saveBtn.addEventListener("click", saveStudent);
-
-async function saveStudent(){
-
-    const name = document.getElementById("studentName").value.trim();
-    const guardian = document.getElementById("guardianName").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const studentClass = document.getElementById("studentClass").value;
-    const monthlyFee = document.getElementById("monthlyFee").value;
-
-    // Validation
-    if(name === "" || guardian === "" || phone === "" || studentClass === "" || monthlyFee === ""){
-
-        msg.style.color = "red";
-        msg.textContent = "Please fill all fields.";
-        return;
-
-    }
-
-    saveBtn.disabled = true;
-    saveBtn.textContent = "Saving...";
-
- try{
-
-    if(editingDocId){
-
-        await db.collection("students").doc(editingDocId).update({
-
-            name: name,
-            guardian: guardian,
-            phone: phone,
-            studentClass: studentClass,
-            monthlyFee: Number(monthlyFee)
-
-        });
-
-        msg.style.color = "green";
-        msg.textContent = "Student updated successfully.";
-
-        editingDocId = null;
-
-        saveBtn.textContent = "➕ Save Student";
-
-    }else{
-
-        const studentId = await generateStudentId();
-
-        await db.collection("students").add({
-
-            studentId: studentId,
-            name: name,
-            guardian: guardian,
-            phone: phone,
-            studentClass: studentClass,
-            monthlyFee: Number(monthlyFee),
-            active: true,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-
-        });
-
-        msg.style.color = "green";
-        msg.textContent = "Student added successfully.";
-
-    }
-
-    await loadStudents();
-
-    document.getElementById("studentName").value = "";
-    document.getElementById("guardianName").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("studentClass").value = "";
-    document.getElementById("monthlyFee").value = "";
-
-}catch(error){
-
-    console.error(error);
-
-    msg.style.color = "red";
-    msg.textContent = error.message;
-
- }
-
-      
-    saveBtn.disabled = false;
-    saveBtn.textContent = "Save Student";
-
-}
-// ===============================
-// Load Students
-// ===============================
-
-async function loadStudents() {
-
-    const table = document.getElementById("studentTable");
-
-    table.innerHTML = "<tr><td colspan='4' align='center'>Loading...</td></tr>";
-
-    try {
-
-        const snapshot = await db.collection("students")
-            .orderBy("createdAt", "desc")
-            .get();
-
-const studentCount = document.getElementById("studentCount");
-studentCount.innerHTML = `<b>Total Students: ${snapshot.size}</b>`;
-      
-        if (snapshot.empty) {
-
-            table.innerHTML =
-            "<tr><td colspan='4' align='center'>No Students Found</td></tr>";
-
-            return;
-        }
-
-        table.innerHTML = "";
-
-        snapshot.forEach(function(doc) {
-
-            const student = doc.data();
-
-            table.innerHTML += `
-            <tr>
-                <td>${student.studentId}</td>
-                <td>${student.name}</td>
-                <td>${student.studentClass}</td>
-                <td>
-                    <button onclick="editStudent('${doc.id}')">✏️ Edit</button>
-<button onclick="deleteStudent('${doc.id}')">🗑️ Delete</button>
-                </td>
-            </tr>
-            `;
-
-        });
-
-    } catch (error) {
-
-        console.error(error);
-
-        table.innerHTML =
-        "<tr><td colspan='4' align='center'>Failed to load students</td></tr>";
 
     }
 
@@ -315,7 +271,7 @@ window.editStudent = async function(docId){
             behavior: "smooth"
         });
 
-    }catch(error){
+    } catch(error){
 
         console.error(error);
         alert("Failed to load student.");
@@ -340,7 +296,7 @@ window.deleteStudent = async function(docId){
 
         loadStudents();
 
-    }catch(error){
+    } catch(error){
 
         console.error(error);
 
@@ -363,22 +319,42 @@ window.searchStudent = function(){
 
     const cards = document.getElementsByClassName("student-card");
 
-    for(let i=0;i<cards.length;i++){
+    for(let i = 0; i < cards.length; i++){
 
         const text = cards[i].innerText.toUpperCase();
 
-        if(text.indexOf(filter)>-1){
-            cards[i].style.display="block";
+        if(text.indexOf(filter) > -1){
+            cards[i].style.display = "";
         }else{
-            cards[i].style.display="none";
+            cards[i].style.display = "none";
         }
 
     }
 
 };
 
-        
+// ===============================
+// Reset Form
+// ===============================
 
-    
+function clearForm(){
 
+    document.getElementById("studentName").value = "";
+    document.getElementById("guardianName").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("studentClass").value = "";
+    document.getElementById("monthlyFee").value = "";
 
+    editingDocId = null;
+
+    saveBtn.textContent = "➕ Save Student";
+
+    msg.textContent = "";
+
+}
+
+// ===============================
+// End of students.js
+// ===============================
+
+console.log("SB English Tuition Student Module Loaded Successfully");
