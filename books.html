@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SB English Tuition Library</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/books.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="library-page">
+
+<div class="library-header">
+
+<h1>📚 Digital Library</h1>
+
+<p>
+Notes • Books • PDF • Images
+</p>
+
+</div>
+
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchBook"
+placeholder="Search books..."
+onkeyup="searchBooks()">
+
+</div>
+
+
+<div class="category-grid">
+
+<div class="category-card" data-class="VI">
+<h2>VI</h2>
+<p>Class Six</p>
+</div>
+
+<div class="category-card" data-class="VII">
+<h2>VII</h2>
+<p>Class Seven</p>
+</div>
+
+<div class="category-card" data-class="VIII">
+<h2>VIII</h2>
+<p>Class Eight</p>
+</div>
+
+<div class="category-card" data-class="IX">
+<h2>IX</h2>
+<p>Class Nine</p>
+</div>
+
+<div class="category-card" data-class="X">
+<h2>X</h2>
+<p>Class Ten</p>
+</div>
+
+<div class="category-card" data-class="XI">
+<h2>XI</h2>
+<p>Class Eleven</p>
+</div>
+
+<div class="category-card" data-class="XII">
+<h2>XII</h2>
+<p>Class Twelve</p>
+</div>
+
+</div>
+
+
+<div id="booksContainer">
+
+</div>
+
+
+<div id="uploadButton" class="floating-upload">
+
+<i class="fa-solid fa-plus"></i>
+
+</div>
+
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-storage-compat.js"></script>
+
+<script src="js/books.js"></script>
+
+</body>
+</html>
