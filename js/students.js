@@ -43,13 +43,78 @@ loadStudents();
 // Generate Student ID
 // ===============================
 
-async function generateStudentId(){
+async function loadStudents() {
 
-    const snapshot = await db.collection("students").get();
+    const table = document.getElementById("studentTable");
 
-    const count = snapshot.size + 1;
+    table.innerHTML = "<p style='text-align:center'>Loading students...</p>";
 
-    return "SBET" + String(count).padStart(3,"0");
+    try {
+
+        const snapshot = await db.collection("students")
+            .orderBy("createdAt", "desc")
+            .get();
+
+        document.getElementById("studentCount").textContent = snapshot.size;
+
+        if (snapshot.empty) {
+            table.innerHTML = "<p style='text-align:center'>No Students Found</p>";
+            return;
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach(function(doc){
+
+            const student = doc.data();
+
+            table.innerHTML += `
+<div class="student-card">
+
+    <div class="student-header">
+
+        <div>
+            <h3>👤 ${student.name}</h3>
+            <small>${student.studentId}</small>
+        </div>
+
+        <span class="status-badge">
+            ${student.active ? "🟢 Active" : "🔴 Inactive"}
+        </span>
+
+    </div>
+
+    <p><b>🎓 Class:</b> ${student.studentClass}</p>
+
+    <p><b>👨 Guardian:</b> ${student.guardian}</p>
+
+    <p><b>📞 Phone:</b> ${student.phone}</p>
+
+    <p><b>💰 Monthly Fee:</b> ₹${student.monthlyFee}</p>
+
+    <div class="student-actions">
+
+        <button onclick="editStudent('${doc.id}')">
+            ✏️ Edit
+        </button>
+
+        <button onclick="deleteStudent('${doc.id}')">
+            🗑 Delete
+        </button>
+
+    </div>
+
+</div>
+`;
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        table.innerHTML =
+        "<p style='text-align:center;color:red;'>Failed to load students.</p>";
+    }
 
 }
 
@@ -291,33 +356,29 @@ window.deleteStudent = async function(docId){
 
 window.searchStudent = function(){
 
-    const input = document.getElementById("searchStudent");
-    const filter = input.value.toUpperCase();
+    const filter = document
+        .getElementById("searchStudent")
+        .value
+        .toUpperCase();
 
-    const table = document.getElementById("studentTable");
-    const rows = table.getElementsByTagName("tr");
+    const cards = document.getElementsByClassName("student-card");
 
-    for(let i = 0; i < rows.length; i++){
+    for(let i=0;i<cards.length;i++){
 
-        const id = rows[i].getElementsByTagName("td")[0];
-        const name = rows[i].getElementsByTagName("td")[1];
+        const text = cards[i].innerText.toUpperCase();
 
-        if(id && name){
-
-            const idText = id.textContent || id.innerText;
-            const nameText = name.textContent || name.innerText;
-
-            if(
-                idText.toUpperCase().indexOf(filter) > -1 ||
-                nameText.toUpperCase().indexOf(filter) > -1
-            ){
-                rows[i].style.display = "";
-            }else{
-                rows[i].style.display = "none";
-            }
-
+        if(text.indexOf(filter)>-1){
+            cards[i].style.display="block";
+        }else{
+            cards[i].style.display="none";
         }
 
     }
 
 };
+
+        
+
+    
+
+
