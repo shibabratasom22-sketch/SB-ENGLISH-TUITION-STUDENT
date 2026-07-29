@@ -1,0 +1,202 @@
+/* ===========================================
+   SB ENGLISH TUITION
+   DIGITAL LIBRARY
+   books.css (Part 1)
+=========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:linear-gradient(135deg,#eef5ff,#f8fbff);
+
+    min-height:100vh;
+
+}
+
+.library-page{
+
+    width:100%;
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+/* Header */
+
+.library-header{
+
+    background:linear-gradient(135deg,#2962ff,#00b8d4);
+
+    color:white;
+
+    padding:35px 20px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+}
+
+.library-header h1{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.library-header p{
+
+    font-size:17px;
+
+    opacity:.95;
+
+}
+
+/* Search */
+
+.search-box{
+
+    margin:25px 0;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:white;
+
+    font-size:16px;
+
+    outline:none;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* Category Grid */
+
+.category-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+
+    gap:18px;
+
+}
+
+/* Card */
+
+.category-card{
+
+    border-radius:20px;
+
+    color:white;
+
+    padding:25px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+/* Hover */
+
+.category-card:hover{
+
+    transform:translateY(-8px) scale(1.03);
+
+}
+
+/* Roman Number */
+
+.category-card h2{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+/* Text */
+
+.category-card p{
+
+    font-size:15px;
+
+}
+
+/* Different Colours */
+
+.category-card:nth-child(1){
+
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+
+}
+
+.category-card:nth-child(2){
+
+background:linear-gradient(135deg,#00c853,#64dd17);
+
+}
+
+.category-card:nth-child(3){
+
+background:linear-gradient(135deg,#ff9800,#ff5722);
+
+}
+
+.category-card:nth-child(4){
+
+background:linear-gradient(135deg,#e91e63,#9c27b0);
+
+}
+
+.category-card:nth-child(5){
+
+background:linear-gradient(135deg,#009688,#00bcd4);
+
+}
+
+.category-card:nth-child(6){
+
+background:linear-gradient(135deg,#ff1744,#ff9100);
+
+}
+
+.category-card:nth-child(7){
+
+background:linear-gradient(135deg,#304ffe,#00bfa5);
+
+}
+
+/* Books Area */
+
+#booksContainer{
+
+    margin-top:35px;
+
+}
