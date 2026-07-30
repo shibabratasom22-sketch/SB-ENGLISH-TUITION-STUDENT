@@ -20,21 +20,30 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="library-page">
 
-    <!-- Header -->
+    <!-- =========================
+         Library Header
+    ========================== -->
 
     <div class="library-header">
 
-        <h1>📚 Digital Library</h1>
+        <h1>
+            <i class="fa-solid fa-book-open"></i>
+            Digital Library
+        </h1>
 
         <p>
-            Notes • PDFs • Images • Study Materials
+            Notes • PDFs • Images • Question Papers • Study Materials
         </p>
 
     </div>
 
-    <!-- Search -->
+    <!-- =========================
+         Search Box
+    ========================== -->
 
     <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
 
         <input
             type="text"
@@ -44,7 +53,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     </div>
 
-    <!-- Class Categories -->
+    <!-- =========================
+         Class Categories
+    ========================== -->
 
     <div class="category-grid">
 
@@ -85,64 +96,142 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     </div>
 
-    <!-- Books List -->
+        <!-- =========================
+         Library Books Section
+    ========================== -->
 
-    <div id="booksContainer">
+    <div class="library-content">
 
-        <div class="empty-library">
+        <div class="section-title">
 
-            <i class="fa-solid fa-book"></i>
+            <h2>
+                <i class="fa-solid fa-books"></i>
+                Available Books
+            </h2>
 
-            <h2>No Books Available</h2>
-
-            <p>
-                Select a class or add your first book.
+            <p id="selectedClassText">
+                Select a class to view books.
             </p>
+
+        </div>
+
+        <!-- Books Container -->
+
+        <div id="booksContainer" class="books-grid">
+
+            <div class="empty-library">
+
+                <i class="fa-solid fa-book-open-reader"></i>
+
+                <h2>No Books Available</h2>
+
+                <p>
+                    Select a class or add your first study material.
+                </p>
+
+            </div>
 
         </div>
 
     </div>
 
-            <!-- Floating Upload Button -->
+    <!-- =========================
+         Floating Upload Button
+    ========================== -->
 
-    <div id="uploadButton" class="floating-upload">
+    <button
+        id="uploadButton"
+        class="floating-upload"
+        title="Add New Book">
 
         <i class="fa-solid fa-plus"></i>
 
-    </div>
+    </button>
 
-    <!-- Upload Modal -->
+        <!-- =========================
+         Upload Book Modal
+    ========================== -->
 
     <div id="uploadModal" class="upload-modal">
 
         <div class="upload-box">
 
-            <h2>📚 Add New Book</h2>
+            <div class="modal-header">
 
-            <label>Book Title</label>
+                <h2>
+                    <i class="fa-solid fa-book-medical"></i>
+                    Add New Book
+                </h2>
+
+                <button
+                    id="closeUploadBtn"
+                    class="close-btn"
+                    type="button">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+            <!-- Book Title -->
+
+            <label>
+                <i class="fa-solid fa-book"></i>
+                Book Title
+            </label>
 
             <input
                 type="text"
                 id="bookTitle"
                 placeholder="Example: Tense Notes">
 
-            <label>Select Class</label>
+            <!-- Class -->
+
+            <label>
+                <i class="fa-solid fa-graduation-cap"></i>
+                Select Class
+            </label>
 
             <select id="bookClass">
 
                 <option value="">Choose Class</option>
 
-                <option value="VI">VI</option>
-                <option value="VII">VII</option>
-                <option value="VIII">VIII</option>
-                <option value="IX">IX</option>
-                <option value="X">X</option>
-                <option value="XI">XI</option>
-                <option value="XII">XII</option>
+                <option value="VI">Class VI</option>
+                <option value="VII">Class VII</option>
+                <option value="VIII">Class VIII</option>
+                <option value="IX">Class IX</option>
+                <option value="X">Class X</option>
+                <option value="XI">Class XI</option>
+                <option value="XII">Class XII</option>
 
             </select>
 
-            <label>File Type</label>
+            <!-- Category -->
+
+            <label>
+                <i class="fa-solid fa-layer-group"></i>
+                Category
+            </label>
+
+            <select id="bookCategory">
+
+                <option value="Grammar">Grammar</option>
+                <option value="Literature">Literature</option>
+                <option value="Notes">Notes</option>
+                <option value="Question Paper">Question Paper</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Worksheet">Worksheet</option>
+                <option value="Assignment">Assignment</option>
+
+            </select>
+
+            <!-- File Type -->
+
+            <label>
+                <i class="fa-solid fa-file"></i>
+                File Type
+            </label>
 
             <select id="bookType">
 
@@ -151,22 +240,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             </select>
 
-            <label>File Name</label>
+            <!-- File Name -->
+
+            <label>
+                <i class="fa-solid fa-folder-open"></i>
+                File Name
+            </label>
 
             <input
                 type="text"
                 id="bookFileName"
-                placeholder="Example: Tense-Notes.pdf">
+                placeholder="Example: English-Grammar.pdf">
 
-            <small style="display:block;margin-top:8px;color:#666;line-height:1.5;">
+            <small class="upload-note">
+
                 Upload the file to:
-                <br>
+
+                <br><br>
+
                 <b>library/ClassName/</b>
-                <br>
+
+                <br><br>
+
                 Example:
+
                 <br>
-                <code>library/IX/Tense-Notes.pdf</code>
+
+                <code>library/IX/English-Grammar.pdf</code>
+
             </small>
+
+            <!-- Buttons -->
 
             <div class="upload-actions">
 
@@ -175,17 +279,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                     class="upload-btn">
 
                     <i class="fa-solid fa-floppy-disk"></i>
+
                     Save Book
 
                 </button>
 
                 <button
                     type="button"
-                    id="closeUploadBtn"
-                    class="close-btn">
+                    id="resetBookBtn"
+                    class="reset-btn">
 
-                    <i class="fa-solid fa-xmark"></i>
-                    Close
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                    Reset
 
                 </button>
 
@@ -195,7 +301,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     </div>
 
-            <!-- Firebase -->
+        <!-- =========================
+         Firebase SDK
+    ========================== -->
 
     <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
 
@@ -203,7 +311,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
-    <!-- Books Module -->
+    <!-- =========================
+         Library JavaScript
+    ========================== -->
 
     <script src="js/books.js"></script>
 
