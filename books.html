@@ -3,16 +3,17 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>SB English Tuition - Digital Library</title>
+    <title>SB English Tuition - Digital Library</title>
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/books.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/books.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -21,24 +22,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <div class="library-page">
 
     <!-- =========================
-         Library Header
+         Header
     ========================== -->
 
-    <div class="library-header">
+    <header class="library-header">
 
         <h1>
-            <i class="fa-solid fa-book-open"></i>
+
+            <i class="fa-solid fa-book-open-reader"></i>
+
             Digital Library
+
         </h1>
 
         <p>
+
             Notes • PDFs • Images • Question Papers • Study Materials
+
         </p>
 
-    </div>
+    </header>
 
     <!-- =========================
-         Search Box
+         Search
     ========================== -->
 
     <div class="search-box">
@@ -97,21 +103,30 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </div>
 
         <!-- =========================
-         Library Books Section
+         Library Content
     ========================== -->
 
-    <div class="library-content">
+    <section class="library-content">
 
         <div class="section-title">
 
-            <h2>
-                <i class="fa-solid fa-books"></i>
-                Available Books
-            </h2>
+            <div>
 
-            <p id="selectedClassText">
-                Select a class to view books.
-            </p>
+                <h2>
+
+                    <i class="fa-solid fa-books"></i>
+
+                    Available Books
+
+                </h2>
+
+                <p id="selectedClassText">
+
+                    Select a class to view study materials.
+
+                </p>
+
+            </div>
 
         </div>
 
@@ -121,19 +136,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <div class="empty-library">
 
-                <i class="fa-solid fa-book-open-reader"></i>
+                <i class="fa-solid fa-book-open"></i>
 
                 <h2>No Books Available</h2>
 
                 <p>
-                    Select a class or add your first study material.
+
+                    Select a class above or add your first study material.
+
                 </p>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
     <!-- =========================
          Floating Upload Button
@@ -142,13 +159,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <button
         id="uploadButton"
         class="floating-upload"
+        type="button"
         title="Add New Book">
 
         <i class="fa-solid fa-plus"></i>
 
     </button>
 
-        <!-- =========================
+       <!-- =========================
          Upload Book Modal
     ========================== -->
 
@@ -159,8 +177,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             <div class="modal-header">
 
                 <h2>
+
                     <i class="fa-solid fa-book-medical"></i>
+
                     Add New Book
+
                 </h2>
 
                 <button
@@ -176,9 +197,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <!-- Book Title -->
 
-            <label>
+            <label for="bookTitle">
+
                 <i class="fa-solid fa-book"></i>
+
                 Book Title
+
             </label>
 
             <input
@@ -188,9 +212,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <!-- Class -->
 
-            <label>
+            <label for="bookClass">
+
                 <i class="fa-solid fa-graduation-cap"></i>
+
                 Select Class
+
             </label>
 
             <select id="bookClass">
@@ -209,9 +236,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <!-- Category -->
 
-            <label>
+            <label for="bookCategory">
+
                 <i class="fa-solid fa-layer-group"></i>
+
                 Category
+
             </label>
 
             <select id="bookCategory">
@@ -228,23 +258,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <!-- File Type -->
 
-            <label>
+            <label for="bookType">
+
                 <i class="fa-solid fa-file"></i>
+
                 File Type
+
             </label>
 
             <select id="bookType">
 
                 <option value="pdf">📄 PDF</option>
-                <option value="image">🖼 Image</option>
+                <option value="image">🖼️ Image</option>
 
             </select>
 
             <!-- File Name -->
 
-            <label>
+            <label for="bookFileName">
+
                 <i class="fa-solid fa-folder-open"></i>
+
                 File Name
+
             </label>
 
             <input
@@ -254,7 +290,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
             <small class="upload-note">
 
-                Upload the file to:
+                First upload your file to:
 
                 <br><br>
 
@@ -268,15 +304,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
                 <code>library/IX/English-Grammar.pdf</code>
 
-            </small>
+                <br><br>
 
-            <!-- Buttons -->
+                For images:
+
+                <br>
+
+                <code>library/IX/Model-Answer.jpg</code>
+
+            </small>
 
             <div class="upload-actions">
 
                 <button
                     id="uploadBookBtn"
-                    class="upload-btn">
+                    class="upload-btn"
+                    type="button">
 
                     <i class="fa-solid fa-floppy-disk"></i>
 
@@ -285,9 +328,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 </button>
 
                 <button
-                    type="button"
                     id="resetBookBtn"
-                    class="reset-btn">
+                    class="reset-btn"
+                    type="button">
 
                     <i class="fa-solid fa-rotate-left"></i>
 
@@ -312,7 +355,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
 
     <!-- =========================
-         Library JavaScript
+         Firebase Configuration
+    ========================== -->
+
+    <script src="js/firebase.js"></script>
+
+    <!-- =========================
+         Digital Library Script
     ========================== -->
 
     <script src="js/books.js"></script>
