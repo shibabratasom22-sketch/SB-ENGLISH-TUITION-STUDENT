@@ -1,24 +1,7 @@
 /* ==========================================
    SB English Tuition
-   Digital Library v3.0
+   Digital Library v3.1
 ========================================== */
-
-/* ==========================================
-   Firebase
-========================================== */
-
-// firebase.js already initializes Firebase.
-// Do NOT initialize Firebase again here.
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-/* ==========================================
-   GitHub Library Base URL
-========================================== */
-
-const GITHUB_BASE =
-"https://shibabratasom22-sketch.github.io/SB-ENGLISH-TUITION-STUDENT/library/";
 
 /* ==========================================
    Global Variables
@@ -28,14 +11,30 @@ let selectedClass = "";
 let isAdmin = false;
 
 /* ==========================================
+   GitHub Library Base URL
+========================================== */
+
+const GITHUB_BASE =
+"https://shibabratasom22-sketch.github.io/SB-ENGLISH-TUITION-STUDENT/library/";
+
+/* ==========================================
    DOM Elements
 ========================================== */
 
-const uploadModal =
-document.getElementById("uploadModal");
+const booksContainer =
+document.getElementById("booksContainer");
+
+const selectedClassText =
+document.getElementById("selectedClassText");
+
+const searchBook =
+document.getElementById("searchBook");
 
 const uploadButton =
 document.getElementById("uploadButton");
+
+const uploadModal =
+document.getElementById("uploadModal");
 
 const closeUploadBtn =
 document.getElementById("closeUploadBtn");
@@ -45,15 +44,6 @@ document.getElementById("uploadBookBtn");
 
 const resetBookBtn =
 document.getElementById("resetBookBtn");
-
-const booksContainer =
-document.getElementById("booksContainer");
-
-const searchBook =
-document.getElementById("searchBook");
-
-const selectedClassText =
-document.getElementById("selectedClassText");
 
 /* ==========================================
    Authentication
@@ -67,7 +57,9 @@ auth.onAuthStateChanged((user)=>{
 
         uploadButton.style.display = "flex";
 
-    }else{
+    }
+
+    else{
 
         isAdmin = false;
 
@@ -81,19 +73,19 @@ auth.onAuthStateChanged((user)=>{
    Upload Modal
 ========================================== */
 
-uploadButton.addEventListener("click",()=>{
+uploadButton.onclick = ()=>{
 
     uploadModal.classList.add("active");
 
-});
+};
 
-closeUploadBtn.addEventListener("click",()=>{
+closeUploadBtn.onclick = ()=>{
 
     uploadModal.classList.remove("active");
 
-});
+};
 
-window.addEventListener("click",(e)=>{
+window.onclick = (e)=>{
 
     if(e.target===uploadModal){
 
@@ -101,25 +93,25 @@ window.addEventListener("click",(e)=>{
 
     }
 
-});
+};
 
 /* ==========================================
    Reset Form
 ========================================== */
 
-resetBookBtn.addEventListener("click",()=>{
+resetBookBtn.onclick = ()=>{
 
-    document.getElementById("bookTitle").value="";
+    document.getElementById("bookTitle").value = "";
 
-    document.getElementById("bookClass").value="";
+    document.getElementById("bookClass").value = "";
 
-    document.getElementById("bookCategory").value="Grammar";
+    document.getElementById("bookCategory").value = "Grammar";
 
-    document.getElementById("bookType").value="pdf";
+    document.getElementById("bookType").value = "pdf";
 
-    document.getElementById("bookFileName").value="";
+    document.getElementById("bookFileName").value = "";
 
-});
+};
 
 /* ==========================================
    Class Selection
@@ -127,7 +119,7 @@ resetBookBtn.addEventListener("click",()=>{
 
 document.querySelectorAll(".category-card").forEach(card=>{
 
-    card.addEventListener("click",()=>{
+    card.onclick = ()=>{
 
         document.querySelectorAll(".category-card")
         .forEach(c=>c.classList.remove("active"));
@@ -143,7 +135,7 @@ document.querySelectorAll(".category-card").forEach(card=>{
 
         loadBooks();
 
-    });
+    };
 
 });
 
@@ -211,7 +203,7 @@ async function loadBooks(){
 
             books.push({
 
-                id:doc.id,
+                id: doc.id,
 
                 ...doc.data()
 
@@ -221,22 +213,17 @@ async function loadBooks(){
 
         books.sort((a,b)=>{
 
-            const ta =
-            a.createdAt?.seconds || 0;
+            const ta = a.createdAt?.seconds || 0;
 
-            const tb =
-            b.createdAt?.seconds || 0;
+            const tb = b.createdAt?.seconds || 0;
 
-            return tb-ta;
+            return tb - ta;
 
         });
 
         books.forEach(book=>{
 
-            createBookCard(
-                book.id,
-                book
-            );
+            createBookCard(book.id, book);
 
         });
 
@@ -252,7 +239,7 @@ async function loadBooks(){
 
                 <i class="fa-solid fa-triangle-exclamation"></i>
 
-                <h2>Unable to Load Library</h2>
+                <h2>Error</h2>
 
                 <p>${error.message}</p>
 
@@ -265,43 +252,10 @@ async function loadBooks(){
 }
 
 /* ==========================================
-   Search
-========================================== */
-
-function searchBooks(){
-
-    const keyword =
-    searchBook.value
-    .toLowerCase()
-    .trim();
-
-    document
-    .querySelectorAll(".book-card")
-    .forEach(card=>{
-
-        const text =
-        card.innerText.toLowerCase();
-
-        card.style.display =
-        text.includes(keyword)
-        ? "flex"
-        : "none";
-
-    });
-
-}
-
-/* ==========================================
-   Initial Load
-========================================== */
-
-loadBooks();
-
-/* ==========================================
    Save Book
 ========================================== */
 
-uploadBookBtn.addEventListener("click", saveBook);
+uploadBookBtn.onclick = saveBook;
 
 async function saveBook(){
 
@@ -320,19 +274,16 @@ async function saveBook(){
     const fileName =
     document.getElementById("bookFileName").value.trim();
 
-    if(
-        !title ||
-        !studentClass ||
-        !fileName
-    ){
+    if(title==="" || studentClass==="" || fileName===""){
 
-        alert("Please fill in all required fields.");
+        alert("Please fill all required fields.");
 
         return;
 
     }
 
     uploadBookBtn.disabled = true;
+
     uploadBookBtn.innerHTML =
     '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
 
@@ -340,13 +291,17 @@ async function saveBook(){
 
         await db.collection("books").add({
 
-            title,
-            studentClass,
-            category,
-            fileType,
-            fileName,
-            createdAt:
-            firebase.firestore.FieldValue.serverTimestamp()
+            title: title,
+
+            studentClass: studentClass,
+
+            category: category,
+
+            fileType: fileType,
+
+            fileName: fileName,
+
+            createdAt: serverTimestamp()
 
         });
 
@@ -354,7 +309,15 @@ async function saveBook(){
 
         uploadModal.classList.remove("active");
 
-        resetBookBtn.click();
+        document.getElementById("bookTitle").value = "";
+
+        document.getElementById("bookClass").value = "";
+
+        document.getElementById("bookCategory").value = "Grammar";
+
+        document.getElementById("bookType").value = "pdf";
+
+        document.getElementById("bookFileName").value = "";
 
         loadBooks();
 
@@ -386,13 +349,12 @@ async function saveBook(){
 function createBookCard(id, book){
 
     const fileURL =
-    GITHUB_BASE +
-    encodeURIComponent(book.studentClass) +
-    "/" +
-    encodeURIComponent(book.fileName);
+        GITHUB_BASE +
+        encodeURIComponent(book.studentClass) +
+        "/" +
+        encodeURIComponent(book.fileName);
 
-    const card =
-    document.createElement("div");
+    const card = document.createElement("div");
 
     card.className = "book-card";
 
@@ -401,26 +363,24 @@ function createBookCard(id, book){
         <div class="book-icon">
 
             <i class="fa-solid ${
-                book.fileType==="image"
+                book.fileType === "image"
                 ? "fa-image"
                 : "fa-file-pdf"
             }"></i>
 
         </div>
 
-        <div class="book-info">
+        <div class="book-details">
 
             <h3>${book.title}</h3>
 
             <p>
-
                 Class ${book.studentClass}
-
-                •
-
-                ${book.category}
-
             </p>
+
+            <span class="book-category">
+                ${book.category}
+            </span>
 
         </div>
 
@@ -431,6 +391,8 @@ function createBookCard(id, book){
                 target="_blank"
                 class="read-btn">
 
+                <i class="fa-solid fa-book-open"></i>
+
                 Read
 
             </a>
@@ -440,26 +402,26 @@ function createBookCard(id, book){
                 download
                 class="download-btn">
 
+                <i class="fa-solid fa-download"></i>
+
                 Download
 
             </a>
 
             ${
-            isAdmin
-            ?
+                isAdmin
+                ? `
+                <button
+                    class="delete-btn"
+                    onclick="deleteBook('${id}')">
 
-            `<button
-                class="delete-btn"
-                onclick="deleteBook('${id}')">
+                    <i class="fa-solid fa-trash"></i>
 
-                Delete
+                    Delete
 
-            </button>`
-
-            :
-
-            ""
-
+                </button>
+                `
+                : ""
             }
 
         </div>
@@ -478,13 +440,13 @@ async function deleteBook(id){
 
     if(!isAdmin){
 
+        alert("Only admin can delete books.");
+
         return;
 
     }
 
-    const ok = confirm(
-        "Are you sure you want to delete this book?"
-    );
+    const ok = confirm("Delete this book?");
 
     if(!ok){
 
@@ -494,10 +456,7 @@ async function deleteBook(id){
 
     try{
 
-        await db
-        .collection("books")
-        .doc(id)
-        .delete();
+        await db.collection("books").doc(id).delete();
 
         loadBooks();
 
@@ -514,68 +473,55 @@ async function deleteBook(id){
 }
 
 /* ==========================================
-   Search Events
+   Search Books
 ========================================== */
+
+function searchBooks(){
+
+    const keyword =
+    searchBook.value.toLowerCase().trim();
+
+    document.querySelectorAll(".book-card").forEach(card=>{
+
+        const text =
+        card.innerText.toLowerCase();
+
+        card.style.display =
+        text.includes(keyword)
+        ? ""
+        : "none";
+
+    });
+
+}
 
 searchBook.addEventListener("input", searchBooks);
 
 /* ==========================================
-   Firestore Realtime Listener
+   Initial UI
 ========================================== */
-
-db.collection("books")
-.onSnapshot(
-
-(snapshot)=>{
-
-    if(selectedClass){
-
-        loadBooks();
-
-    }
-
-},
-
-(error)=>{
-
-    console.error(error);
-
-}
-
-);
-
-/* ==========================================
-   Initial UI State
-========================================== */
-
-if(uploadButton){
-
-    uploadButton.style.display = "none";
-
-}
 
 booksContainer.innerHTML = `
 
-    <div class="empty-library">
+<div class="empty-library">
 
-        <i class="fa-solid fa-book-open"></i>
+    <i class="fa-solid fa-book-open"></i>
 
-        <h2>Select a Class</h2>
+    <h2>Select a Class</h2>
 
-        <p>
+    <p>
 
-            Choose a class above to view available books.
+        Choose a class above to view books.
 
-        </p>
+    </p>
 
-    </div>
+</div>
 
 `;
 
 /* ==========================================
-   Make Functions Global
+   Global Functions
 ========================================== */
 
-window.loadBooks = loadBooks;
-window.deleteBook = deleteBook;
 window.searchBooks = searchBooks;
+window.deleteBook = deleteBook;
