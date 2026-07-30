@@ -1,405 +1,599 @@
-/* ===========================
-   DIGITAL LIBRARY
-=========================== */
+/* ==========================================
+   SB English Tuition
+   Digital Library v2.0
+========================================== */
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-background:#f5f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fb;
+    color:#222;
 }
 
 .library-page{
-padding:20px;
-padding-bottom:100px;
+    width:100%;
+    max-width:1300px;
+    margin:auto;
+    padding:20px;
 }
 
+/* ==========================================
+   Header
+========================================== */
+
 .library-header{
-background:linear-gradient(135deg,#2962ff,#00bcd4);
-color:#fff;
-padding:25px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-margin-bottom:20px;
+    background:linear-gradient(135deg,#ffd54f,#ffca28);
+    border-radius:18px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    margin-bottom:25px;
 }
 
 .library-header h1{
-font-size:30px;
-margin-bottom:8px;
+    font-size:32px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:10px;
+}
+
+.library-header h1 i{
+    margin-right:10px;
 }
 
 .library-header p{
-font-size:15px;
-opacity:.9;
+    font-size:16px;
+    color:#444;
+    line-height:1.6;
 }
 
+/* ==========================================
+   Search Box
+========================================== */
+
 .search-box{
-margin-bottom:20px;
+    position:relative;
+    margin-bottom:25px;
+}
+
+.search-box i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#888;
+    font-size:18px;
 }
 
 .search-box input{
-width:100%;
-padding:14px;
-border:none;
-border-radius:14px;
-font-size:16px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-outline:none;
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:14px;
+    padding:0 20px 0 50px;
+    font-size:16px;
+    background:#fff;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    outline:none;
+    transition:.3s;
 }
 
+.search-box input:focus{
+    box-shadow:0 0 0 3px rgba(255,193,7,.35);
+}
+
+/* ==========================================
+   Class Categories
+========================================== */
+
 .category-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-gap:15px;
-margin-bottom:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:16px;
+    margin-bottom:30px;
 }
 
 .category-card{
-background:#fff;
-border-radius:18px;
-padding:18px;
-text-align:center;
-cursor:pointer;
-transition:.3s;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+    background:#fff;
+    border-radius:16px;
+    padding:20px 15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    border:2px solid transparent;
 }
 
 .category-card:hover{
-transform:translateY(-5px);
+    transform:translateY(-6px);
+    border-color:#ffca28;
+    box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+
+.category-card.active{
+    background:#ffca28;
+    color:#222;
+    border-color:#f4b400;
 }
 
 .category-card h2{
-color:#2962ff;
-font-size:26px;
-margin-bottom:6px;
+    font-size:28px;
+    margin-bottom:8px;
+    font-weight:700;
 }
 
 .category-card p{
-font-size:14px;
-color:#666;
+    font-size:14px;
+    color:#666;
 }
 
-#booksContainer{
-display:grid;
-gap:15px;
+.category-card.active p{
+    color:#222;
 }
 
-/* ===========================
-   FLOATING UPLOAD BUTTON
-=========================== */
+/* ==========================================
+   Library Content
+========================================== */
+
+.library-content{
+    margin-top:15px;
+}
+
+.section-title{
+    margin-bottom:20px;
+}
+
+.section-title h2{
+    font-size:24px;
+    color:#222;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.section-title p{
+    margin-top:6px;
+    color:#777;
+    font-size:15px;
+}
+
+/* ==========================================
+   Books Grid
+========================================== */
+
+.books-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+/* ==========================================
+   Empty Library
+========================================== */
+
+.empty-library{
+    grid-column:1/-1;
+    background:#fff;
+    border-radius:18px;
+    padding:60px 25px;
+    text-align:center;
+    box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+
+.empty-library i{
+    font-size:60px;
+    color:#ffca28;
+    margin-bottom:18px;
+}
+
+.empty-library h2{
+    font-size:26px;
+    margin-bottom:12px;
+    color:#333;
+}
+
+.empty-library p{
+    color:#777;
+    font-size:16px;
+    line-height:1.6;
+}
+
+/* ==========================================
+   Floating Upload Button
+========================================== */
 
 .floating-upload{
-position:fixed;
-right:20px;
-bottom:20px;
-width:60px;
-height:60px;
-border-radius:50%;
-background:linear-gradient(135deg,#2962ff,#00bcd4);
-color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:26px;
-cursor:pointer;
-box-shadow:0 10px 25px rgba(0,0,0,.25);
-transition:.3s;
-z-index:1000;
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:62px;
+    height:62px;
+    border:none;
+    border-radius:50%;
+    background:#ffca28;
+    color:#222;
+    font-size:24px;
+    cursor:pointer;
+    box-shadow:0 10px 24px rgba(0,0,0,.22);
+    transition:.3s;
+    z-index:1000;
 }
 
 .floating-upload:hover{
-transform:scale(1.08);
+    transform:scale(1.08);
 }
 
-/* ===========================
-   UPLOAD MODAL
-=========================== */
+/* ==========================================
+   Book Card
+========================================== */
+
+.book-card{
+    background:#ffffff;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    transition:.3s;
+    border:2px solid transparent;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.book-card:hover{
+    transform:translateY(-6px);
+    border-color:#ffca28;
+    box-shadow:0 12px 28px rgba(0,0,0,.15);
+}
+
+/* ==========================================
+   Book Header
+========================================== */
+
+.book-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.book-title{
+    font-size:20px;
+    font-weight:700;
+    color:#222;
+    line-height:1.4;
+    word-break:break-word;
+}
+
+.book-icon{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    background:#fff3cd;
+    color:#d48806;
+    flex-shrink:0;
+}
+
+/* ==========================================
+   Book Details
+========================================== */
+
+.book-details{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.book-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#555;
+    font-size:15px;
+}
+
+.book-info i{
+    width:18px;
+    color:#ff9800;
+}
+
+/* ==========================================
+   Badges
+========================================== */
+
+.badge-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.badge{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.badge-class{
+    background:#fff3cd;
+    color:#7a5a00;
+}
+
+.badge-category{
+    background:#e8f5e9;
+    color:#2e7d32;
+}
+
+.badge-pdf{
+    background:#fdecea;
+    color:#c62828;
+}
+
+.badge-image{
+    background:#e3f2fd;
+    color:#1565c0;
+}
+
+/* ==========================================
+   Action Buttons
+========================================== */
+
+.book-actions{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.book-actions button{
+    flex:1;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.read-btn{
+    background:#4caf50;
+    color:#fff;
+}
+
+.read-btn:hover{
+    background:#43a047;
+}
+
+.download-btn{
+    background:#2196f3;
+    color:#fff;
+}
+
+.download-btn:hover{
+    background:#1976d2;
+}
+
+.delete-btn{
+    background:#f44336;
+    color:#fff;
+}
+
+.delete-btn:hover{
+    background:#d32f2f;
+}
+
+.book-actions i{
+    margin-right:6px;
+}
+
+/* ==========================================
+   Upload Modal
+========================================== */
 
 .upload-modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.55);
-justify-content:center;
-align-items:center;
-z-index:2000;
-padding:20px;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:2000;
+}
+
+.upload-modal.active{
+    display:flex;
 }
 
 .upload-box{
-background:#fff;
-width:100%;
-max-width:420px;
-border-radius:22px;
-padding:25px;
-box-shadow:0 20px 40px rgba(0,0,0,.25);
-animation:popup .25s ease;
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    animation:popup .25s ease;
 }
 
 @keyframes popup{
-
-from{
-opacity:0;
-transform:scale(.9);
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
-to{
-opacity:1;
-transform:scale(1);
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
+.modal-header h2{
+    font-size:24px;
+    color:#222;
 }
 
-.upload-box h2{
-text-align:center;
-margin-bottom:20px;
-color:#2962ff;
+.modal-header i{
+    color:#ffb300;
+    margin-right:8px;
 }
 
 .upload-box label{
-display:block;
-margin:12px 0 6px;
-font-weight:600;
-color:#444;
+    display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+    font-size:15px;
+    font-weight:600;
+    color:#333;
+}
+
+.upload-box label i{
+    color:#ff9800;
+    margin-right:6px;
 }
 
 .upload-box input,
 .upload-box select{
-width:100%;
-padding:12px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:15px;
-outline:none;
+    width:100%;
+    height:48px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:0 15px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+    background:#fff;
 }
 
 .upload-box input:focus,
 .upload-box select:focus{
-border-color:#2962ff;
+    border-color:#ffca28;
+    box-shadow:0 0 0 3px rgba(255,202,40,.25);
 }
 
-#uploadProgress{
-width:100%;
-height:10px;
-margin-top:15px;
+.upload-note{
+    display:block;
+    margin-top:12px;
+    padding:12px;
+    border-radius:10px;
+    background:#fff8e1;
+    color:#666;
+    font-size:13px;
+    line-height:1.6;
 }
+
+.upload-note code{
+    display:block;
+    margin-top:8px;
+    padding:8px;
+    background:#fff;
+    border-radius:8px;
+    word-break:break-all;
+    color:#d84315;
+}
+
+/* ==========================================
+   Buttons
+========================================== */
 
 .upload-actions{
-display:flex;
-gap:12px;
-margin-top:20px;
+    display:flex;
+    gap:12px;
+    margin-top:25px;
 }
 
 .upload-btn,
+.reset-btn,
 .close-btn{
-flex:1;
-padding:12px;
-border:none;
-border-radius:12px;
-font-size:15px;
-font-weight:bold;
-cursor:pointer;
-transition:.25s;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
 }
 
 .upload-btn{
-background:#2962ff;
-color:#fff;
+    flex:1;
+    padding:14px;
+    background:#ffca28;
+    color:#222;
 }
 
 .upload-btn:hover{
-background:#1747d1;
+    background:#ffc107;
+}
+
+.reset-btn{
+    flex:1;
+    padding:14px;
+    background:#f5f5f5;
+    color:#444;
+}
+
+.reset-btn:hover{
+    background:#e0e0e0;
 }
 
 .close-btn{
-background:#e0e0e0;
-color:#333;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#f2f2f2;
+    color:#555;
 }
 
 .close-btn:hover{
-background:#cfcfcf;
+    background:#f44336;
+    color:#fff;
 }
 
-/* ===========================
-   MOBILE
-=========================== */
+/* ==========================================
+   Responsive
+========================================== */
 
-@media(max-width:600px){
+@media (max-width:768px){
 
-.library-header h1{
-font-size:24px;
-}
+    .library-page{
+        padding:15px;
+    }
 
-.category-grid{
-grid-template-columns:repeat(2,1fr);
-}
+    .library-header h1{
+        font-size:26px;
+    }
 
-.upload-box{
-padding:20px;
-}
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-}
+    .books-grid{
+        grid-template-columns:1fr;
+    }
 
-/* ===========================
-   BOOK CARDS
-=========================== */
+    .upload-box{
+        padding:20px;
+    }
 
-.book-card{
-background:#ffffff;
-border-radius:18px;
-padding:18px;
-margin-bottom:16px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-transition:.3s;
-animation:fadeUp .35s ease;
-}
+    .upload-actions{
+        flex-direction:column;
+    }
 
-.book-card:hover{
-transform:translateY(-4px);
-box-shadow:0 12px 28px rgba(0,0,0,.12);
-}
-
-.book-top{
-display:flex;
-align-items:center;
-gap:15px;
-margin-bottom:15px;
-}
-
-.book-icon{
-width:60px;
-height:60px;
-border-radius:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-color:#fff;
-background:linear-gradient(135deg,#ff6b6b,#ff9800);
-flex-shrink:0;
-}
-
-.book-info{
-flex:1;
-}
-
-.book-title{
-font-size:18px;
-font-weight:700;
-color:#222;
-margin-bottom:6px;
-word-break:break-word;
-}
-
-.book-class{
-display:inline-block;
-padding:5px 12px;
-border-radius:20px;
-background:#e3f2fd;
-color:#1565c0;
-font-size:13px;
-font-weight:600;
-}
-
-.book-actions{
-display:flex;
-gap:10px;
-margin-top:15px;
-}
-
-.book-actions button,
-.book-actions a{
-flex:1;
-padding:12px;
-border:none;
-border-radius:12px;
-font-size:14px;
-font-weight:600;
-text-decoration:none;
-text-align:center;
-cursor:pointer;
-transition:.25s;
-}
-
-.preview-btn{
-background:#00b894;
-color:#fff;
-}
-
-.preview-btn:hover{
-background:#009b78;
-}
-
-.download-btn{
-background:#2962ff;
-color:#fff;
-}
-
-.download-btn:hover{
-background:#1747d1;
-}
-
-.delete-btn{
-background:#ef5350;
-color:#fff;
-}
-
-.delete-btn:hover{
-background:#d32f2f;
-}
-
-/* ===========================
-   EMPTY STATE
-=========================== */
-
-.empty-library{
-background:#fff;
-border-radius:18px;
-padding:40px 20px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.empty-library i{
-font-size:60px;
-color:#2962ff;
-margin-bottom:15px;
-}
-
-.empty-library h2{
-font-size:22px;
-margin-bottom:10px;
-color:#333;
-}
-
-.empty-library p{
-color:#777;
-font-size:15px;
-line-height:1.5;
-}
-
-/* ===========================
-   ANIMATION
-=========================== */
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
+    .floating-upload{
+        right:18px;
+        bottom:18px;
+    }
 
 }
