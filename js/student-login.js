@@ -1,7 +1,7 @@
 // ============================================
-// SB English Tuition
+// SB ENGLISH TUITION
 // Student Login System
-// Version : 1.0
+// Version : 2.0
 // Part : 1
 // ============================================
 
@@ -31,7 +31,7 @@ const firebaseConfig = {
 // Initialize Firebase
 // ============================================
 
-if (!firebase.apps.length) {
+if(!firebase.apps.length){
 
     firebase.initializeApp(firebaseConfig);
 
@@ -53,14 +53,14 @@ document.getElementById("password");
 const loginBtn =
 document.getElementById("loginBtn");
 
+const forgotBtn =
+document.getElementById("forgotBtn");
+
 const loginMsg =
 document.getElementById("loginMsg");
 
 const togglePassword =
 document.getElementById("togglePassword");
-
-const forgotBtn =
-document.getElementById("forgotBtn");
 
 
 // ============================================
@@ -69,9 +69,9 @@ document.getElementById("forgotBtn");
 
 function showMessage(text,color){
 
-    loginMsg.textContent = text;
+    loginMsg.textContent=text;
 
-    loginMsg.style.color = color;
+    loginMsg.style.color=color;
 
 }
 
@@ -102,35 +102,381 @@ togglePassword.addEventListener("click",function(){
 
 
 // ============================================
-// Login Button
+// Enter Key Support
 // ============================================
 
-loginBtn.addEventListener("click",studentLogin);
+studentIdInput.addEventListener("keypress",function(e){
+
+    if(e.key==="Enter"){
+
+        passwordInput.focus();
+
+    }
+
+});
+
+
+passwordInput.addEventListener("keypress",function(e){
+
+    if(e.key==="Enter"){
+
+        studentLogin();
+
+    }
+
+});
 
 
 // ============================================
-// Placeholder
+// Button Events
+// ============================================
+
+loginBtn.addEventListener(
+    "click",
+    studentLogin
+);
+
+forgotBtn.addEventListener(
+    "click",
+    forgotPassword
+);
+
+
+// ============================================
+// Placeholder Functions
 // ============================================
 
 async function studentLogin(){
 
-    showMessage(
-        "Login system loading...",
-        "green"
-    );
+    console.log("Student Login");
 
-    console.log(
-        "Student Login Started"
+}
+
+
+function forgotPassword(){
+
+    alert(
+        "Forgot Password Module Coming Next"
     );
 
 }
 
 
 // ============================================
-// End
+// Version
 // ============================================
 
 console.log(
-"Student Login JS v1.0 Loaded"
+"Student Login v2.0 Part 1 Loaded"
 );
+
+// ============================================
+// Student Login System
+// Version : 2.0
+// Part : 2
+// Login Verification
+// ============================================
+
+
+// ============================================
+// Student Login
+// ============================================
+
+async function studentLogin(){
+
+    const studentId =
+    studentIdInput.value
+    .trim()
+    .toUpperCase();
+
+    const password =
+    passwordInput.value
+    .trim();
+
+    if(studentId===""){
+
+        showMessage(
+            "Please enter Student ID.",
+            "red"
+        );
+
+        studentIdInput.focus();
+
+        return;
+
+    }
+
+    if(password===""){
+
+        showMessage(
+            "Please enter Password.",
+            "red"
+        );
+
+        passwordInput.focus();
+
+        return;
+
+    }
+
+    loginBtn.disabled=true;
+
+    loginBtn.textContent=
+    "Logging In...";
+
+    showMessage(
+        "",
+        "green"
+    );
+
+    try{
+
+        const snapshot =
+        await db
+        .collection("students")
+        .where(
+            "studentId",
+            "==",
+            studentId
+        )
+        .limit(1)
+        .get();
+
+        if(snapshot.empty){
+
+            showMessage(
+                "Student ID not found.",
+                "red"
+            );
+
+            return;
+
+        }
+
+        const doc =
+        snapshot.docs[0];
+
+        const student =
+        doc.data();
+
+        if(student.active===false){
+
+            showMessage(
+                "Account is inactive.",
+                "red"
+            );
+
+            return;
+
+        }
+
+        if(student.password!==password){
+
+            showMessage(
+                "Incorrect Password.",
+                "red"
+            );
+
+            return;
+
+        }
+
+        // =====================================
+        // Save Session
+        // =====================================
+
+        sessionStorage.setItem(
+            "studentDocId",
+            doc.id
+        );
+
+        sessionStorage.setItem(
+            "studentId",
+            student.studentId
+        );
+
+        sessionStorage.setItem(
+            "studentName",
+            student.name
+        );
+
+        sessionStorage.setItem(
+            "studentClass",
+            student.studentClass
+        );
+
+        sessionStorage.setItem(
+            "studentPhone",
+            student.phone
+        );
+
+        showMessage(
+            "Login Successful.",
+            "green"
+        );
+
+        // =====================================
+        // Part 3
+        // Redirect Logic
+        // =====================================
+
+        console.log(student);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        showMessage(
+            error.message,
+            "red"
+        );
+
+    }
+
+    finally{
+
+        loginBtn.disabled=false;
+
+        loginBtn.textContent=
+        "Login";
+
+    }
+
+}
+
+// ============================================
+// Student Login System
+// Version : 2.0
+// Part : 3
+// Redirect & Session
+// ============================================
+
+
+// ============================================
+// Redirect After Login
+// ============================================
+
+function redirectStudent(student){
+
+    // First Login
+
+    if(student.mustChangePassword===true){
+
+        window.location.href=
+        "change-password.html";
+
+        return;
+
+    }
+
+    // Normal Login
+
+    window.location.href=
+    "student-dashboard.html";
+
+}
+
+
+// ============================================
+// Save Complete Session
+// ============================================
+
+function saveStudentSession(docId,student){
+
+    sessionStorage.setItem(
+        "studentDocId",
+        docId
+    );
+
+    sessionStorage.setItem(
+        "studentId",
+        student.studentId
+    );
+
+    sessionStorage.setItem(
+        "studentName",
+        student.name
+    );
+
+    sessionStorage.setItem(
+        "studentClass",
+        student.studentClass
+    );
+
+    sessionStorage.setItem(
+        "studentPhone",
+        student.phone
+    );
+
+    sessionStorage.setItem(
+        "studentGuardian",
+        student.guardian
+    );
+
+    sessionStorage.setItem(
+        "studentFee",
+        student.monthlyFee
+    );
+
+}
+
+
+// ============================================
+// Auto Login Check
+// ============================================
+
+window.addEventListener("load",function(){
+
+    const id=
+    sessionStorage.getItem("studentId");
+
+    if(id){
+
+        console.log(
+            "Student Session Found"
+        );
+
+    }
+
+});
+
+
+// ============================================
+// IMPORTANT
+// ============================================
+
+/*
+
+Part 4 এ
+
+studentLogin()
+
+Function-এর ভিতরে
+
+sessionStorage.setItem()
+
+গুলোর পরিবর্তে
+
+শুধু
+
+saveStudentSession(doc.id,student);
+
+লিখবে
+
+এবং
+
+showMessage(
+"Login Successful.",
+"green"
+);
+
+এর নিচে
+
+redirectStudent(student);
+
+যোগ করব।
+
+*/
 
