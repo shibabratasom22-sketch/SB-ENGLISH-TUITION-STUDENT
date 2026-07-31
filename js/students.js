@@ -129,7 +129,7 @@ console.log("Student Module v2.0 Loaded");
 saveBtn.addEventListener("click", saveStudent);
 
 async function saveStudent(){
-alert("NEW STUDENTS.JS RUNNING");
+
     const name =
     document.getElementById("studentName").value.trim();
 
