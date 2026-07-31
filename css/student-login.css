@@ -74,3 +74,110 @@ body{
     box-shadow:0 15px 35px rgba(0,0,0,.15);
     z-index:10;
 }
+
+/* ===========================
+   Logo Section
+=========================== */
+
+.logo-box{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo-box i{
+    width:90px;
+    height:90px;
+    background:#fbc02d;
+    color:#ffffff;
+    font-size:40px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 15px;
+    box-shadow:0 8px 20px rgba(251,192,45,.45);
+}
+
+.logo-box h1{
+    font-size:28px;
+    color:#222;
+    margin-bottom:8px;
+    font-weight:700;
+}
+
+.logo-box p{
+    color:#777;
+    font-size:15px;
+    letter-spacing:.3px;
+}
+
+/* ===========================
+   Form
+=========================== */
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    color:#444;
+    margin-bottom:8px;
+}
+
+/* ===========================
+   Input Box
+=========================== */
+
+.input-box{
+    width:100%;
+    height:55px;
+    background:#f7f7f7;
+    border:2px solid transparent;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    transition:.3s;
+}
+
+.input-box:focus-within{
+    border-color:#fbc02d;
+    background:#ffffff;
+    box-shadow:0 0 0 4px rgba(251,192,45,.18);
+}
+
+.input-box i{
+    width:50px;
+    text-align:center;
+    color:#777;
+    font-size:18px;
+}
+
+.input-box input{
+    flex:1;
+    height:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:16px;
+    color:#222;
+    padding-right:10px;
+}
+
+.input-box input::placeholder{
+    color:#999;
+}
+
+#togglePassword{
+    width:50px;
+    text-align:center;
+    cursor:pointer;
+    color:#777;
+    transition:.3s;
+}
+
+#togglePassword:hover{
+    color:#fbc02d;
+}
