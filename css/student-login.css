@@ -230,3 +230,79 @@ body{
 .login-footer b{
     color:#222;
 }
+
+/* ===========================
+   Animation
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.login-card{
+    animation:fadeIn .7s ease;
+}
+
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:480px){
+
+    .login-card{
+        padding:30px 20px;
+        border-radius:22px;
+    }
+
+    .logo-box i{
+        width:80px;
+        height:80px;
+        font-size:34px;
+    }
+
+    .logo-box h1{
+        font-size:24px;
+    }
+
+    .logo-box p{
+        font-size:14px;
+    }
+
+    .input-box{
+        height:52px;
+    }
+
+    .login-btn{
+        height:52px;
+        font-size:16px;
+    }
+
+}
+
+
+/* ===========================
+   Reserved For Future
+=========================== */
+
+/*
+Future Features
+
+✔ Live Clock
+✔ Greeting
+✔ Weather
+✔ Daily Quote
+✔ Student Photo
+✔ Notification Badge
+
+*/
