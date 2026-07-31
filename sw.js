@@ -1,4 +1,4 @@
-const CACHE_NAME = "sb-english-v3";
+const CACHE_NAME = "sb-english-tuition-v4.0-student-1";
 const urlsToCache=[
 "./",
 "./index.html",
