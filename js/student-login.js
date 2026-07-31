@@ -1,86 +1,136 @@
-// ==========================
+// ============================================
 // SB English Tuition
-// Student Login JS v1.0
-// Part 3.1
-// ==========================
+// Student Login System
+// Version : 1.0
+// Part : 1
+// ============================================
 
-// Elements
 
-const loginForm = document.getElementById("studentLoginForm");
+// ============================================
+// Firebase Configuration
+// ============================================
 
-const studentId = document.getElementById("studentId");
+const firebaseConfig = {
 
-const password = document.getElementById("password");
+    apiKey: "AIzaSyDIOg_0tsEnh5oItSXA8j6EgrkWBdi07Nk",
+
+    authDomain: "sb-english-tuition.firebaseapp.com",
+
+    projectId: "sb-english-tuition",
+
+    storageBucket: "sb-english-tuition.firebasestorage.app",
+
+    messagingSenderId: "162778343838",
+
+    appId: "1:162778343838:web:f21008cab298e19fa48e8f"
+
+};
+
+
+// ============================================
+// Initialize Firebase
+// ============================================
+
+if (!firebase.apps.length) {
+
+    firebase.initializeApp(firebaseConfig);
+
+}
+
+const db = firebase.firestore();
+
+
+// ============================================
+// Global Elements
+// ============================================
+
+const studentIdInput =
+document.getElementById("studentId");
+
+const passwordInput =
+document.getElementById("password");
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const loginMsg =
+document.getElementById("loginMsg");
 
 const togglePassword =
 document.getElementById("togglePassword");
 
+const forgotBtn =
+document.getElementById("forgotBtn");
 
-// ==========================
+
+// ============================================
+// Helper Function
+// ============================================
+
+function showMessage(text,color){
+
+    loginMsg.textContent = text;
+
+    loginMsg.style.color = color;
+
+}
+
+
+// ============================================
 // Show / Hide Password
-// ==========================
+// ============================================
 
-togglePassword.addEventListener("click", () => {
+togglePassword.addEventListener("click",function(){
 
-    if(password.type === "password"){
+    if(passwordInput.type==="password"){
 
-        password.type = "text";
+        passwordInput.type="text";
 
-        togglePassword.innerHTML =
-        '<i class="fas fa-eye-slash"></i>';
+        togglePassword.textContent="🙈";
 
     }
 
     else{
 
-        password.type = "password";
+        passwordInput.type="password";
 
-        togglePassword.innerHTML =
-        '<i class="fas fa-eye"></i>';
+        togglePassword.textContent="👁";
 
     }
 
 });
 
-// ==========================
-// Basic Login Validation
-// ==========================
 
-loginForm.addEventListener("submit", function (e) {
+// ============================================
+// Login Button
+// ============================================
 
-    e.preventDefault();
+loginBtn.addEventListener("click",studentLogin);
 
-    const id = studentId.value.trim().toUpperCase();
-    const pass = password.value.trim();
 
-    if (id === "") {
-        alert("Please enter Student ID.");
-        studentId.focus();
-        return;
-    }
+// ============================================
+// Placeholder
+// ============================================
 
-    if (!/^SBET\d{3,}$/.test(id)) {
-        alert("Student ID must be like SBET001");
-        studentId.focus();
-        return;
-    }
+async function studentLogin(){
 
-    if (pass === "") {
-        alert("Please enter Password.");
-        password.focus();
-        return;
-    }
+    showMessage(
+        "Login system loading...",
+        "green"
+    );
 
-    // Loading Button
+    console.log(
+        "Student Login Started"
+    );
 
-    const loginBtn = document.querySelector(".login-btn");
+}
 
-    loginBtn.disabled = true;
-    loginBtn.innerHTML =
-        '<i class="fas fa-spinner fa-spin"></i> Logging in...';
 
-    // Firestore Login will be added here
-    // in the next part.
+// ============================================
+// End
+// ============================================
 
-});
+console.log(
+"Student Login JS v1.0 Loaded"
+);
 
