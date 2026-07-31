@@ -1,7 +1,7 @@
 // ============================================
 // SB ENGLISH TUITION
 // Student Login System
-// Version : 2.0
+// Version : 3.0
 // Part : 1
 // ============================================
 
@@ -105,7 +105,7 @@ togglePassword.addEventListener("click",function(){
 // Enter Key Support
 // ============================================
 
-studentIdInput.addEventListener("keypress",function(e){
+studentIdInput.addEventListener("keydown",function(e){
 
     if(e.key==="Enter"){
 
@@ -115,8 +115,7 @@ studentIdInput.addEventListener("keypress",function(e){
 
 });
 
-
-passwordInput.addEventListener("keypress",function(e){
+passwordInput.addEventListener("keydown",function(e){
 
     if(e.key==="Enter"){
 
@@ -143,21 +142,23 @@ forgotBtn.addEventListener(
 
 
 // ============================================
-// Placeholder Functions
+// Login Function
 // ============================================
 
 async function studentLogin(){
 
-    console.log("Student Login");
+    // Part 2
 
 }
 
 
+// ============================================
+// Forgot Password
+// ============================================
+
 function forgotPassword(){
 
-    alert(
-        "Forgot Password Module Coming Next"
-    );
+    // Part 5
 
 }
 
@@ -167,19 +168,14 @@ function forgotPassword(){
 // ============================================
 
 console.log(
-"Student Login v2.0 Part 1 Loaded"
+"Student Login v3.0 Part 1 Loaded"
 );
 
 // ============================================
 // Student Login System
-// Version : 2.0
+// Version : 3.0
 // Part : 2
-// Login Verification
-// ============================================
-
-
-// ============================================
-// Student Login
+// Complete Login Logic
 // ============================================
 
 async function studentLogin(){
@@ -224,21 +220,14 @@ async function studentLogin(){
     loginBtn.textContent=
     "Logging In...";
 
-    showMessage(
-        "",
-        "green"
-    );
+    showMessage("","green");
 
     try{
 
         const snapshot =
         await db
         .collection("students")
-        .where(
-            "studentId",
-            "==",
-            studentId
-        )
+        .where("studentId","==",studentId)
         .limit(1)
         .get();
 
@@ -262,7 +251,7 @@ async function studentLogin(){
         if(student.active===false){
 
             showMessage(
-                "Account is inactive.",
+                "Your account is inactive.",
                 "red"
             );
 
@@ -280,10 +269,6 @@ async function studentLogin(){
             return;
 
         }
-
-        // =====================================
-        // Save Session
-        // =====================================
 
         sessionStorage.setItem(
             "studentDocId",
@@ -310,17 +295,27 @@ async function studentLogin(){
             student.phone
         );
 
+        sessionStorage.setItem(
+            "studentGuardian",
+            student.guardian
+        );
+
+        sessionStorage.setItem(
+            "studentFee",
+            student.monthlyFee
+        );
+
+        sessionStorage.setItem(
+            "mustChangePassword",
+            student.mustChangePassword
+        );
+
         showMessage(
-            "Login Successful.",
+            "Login Successful...",
             "green"
         );
 
-        // =====================================
-        // Part 3
-        // Redirect Logic
-        // =====================================
-
-        console.log(student);
+        // Redirect Part 3-এ হবে
 
     }
 
@@ -339,144 +334,8 @@ async function studentLogin(){
 
         loginBtn.disabled=false;
 
-        loginBtn.textContent=
-        "Login";
+        loginBtn.textContent="Login";
 
     }
 
 }
-
-// ============================================
-// Student Login System
-// Version : 2.0
-// Part : 3
-// Redirect & Session
-// ============================================
-
-
-// ============================================
-// Redirect After Login
-// ============================================
-
-function redirectStudent(student){
-
-    // First Login
-
-    if(student.mustChangePassword===true){
-
-        window.location.href=
-        "change-password.html";
-
-        return;
-
-    }
-
-    // Normal Login
-
-    window.location.href=
-    "student-dashboard.html";
-
-}
-
-
-// ============================================
-// Save Complete Session
-// ============================================
-
-function saveStudentSession(docId,student){
-
-    sessionStorage.setItem(
-        "studentDocId",
-        docId
-    );
-
-    sessionStorage.setItem(
-        "studentId",
-        student.studentId
-    );
-
-    sessionStorage.setItem(
-        "studentName",
-        student.name
-    );
-
-    sessionStorage.setItem(
-        "studentClass",
-        student.studentClass
-    );
-
-    sessionStorage.setItem(
-        "studentPhone",
-        student.phone
-    );
-
-    sessionStorage.setItem(
-        "studentGuardian",
-        student.guardian
-    );
-
-    sessionStorage.setItem(
-        "studentFee",
-        student.monthlyFee
-    );
-
-}
-
-
-// ============================================
-// Auto Login Check
-// ============================================
-
-window.addEventListener("load",function(){
-
-    const id=
-    sessionStorage.getItem("studentId");
-
-    if(id){
-
-        console.log(
-            "Student Session Found"
-        );
-
-    }
-
-});
-
-
-// ============================================
-// IMPORTANT
-// ============================================
-
-/*
-
-Part 4 এ
-
-studentLogin()
-
-Function-এর ভিতরে
-
-sessionStorage.setItem()
-
-গুলোর পরিবর্তে
-
-শুধু
-
-saveStudentSession(doc.id,student);
-
-লিখবে
-
-এবং
-
-showMessage(
-"Login Successful.",
-"green"
-);
-
-এর নিচে
-
-redirectStudent(student);
-
-যোগ করব।
-
-*/
-
