@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>SB English Tuition | Student Login</title>
+<title>Student Login | SB English Tuition</title>
 
-<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/student-login.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -19,81 +18,69 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
     <div class="login-card">
 
-        <div class="logo-box">
-            <i class="fas fa-graduation-cap"></i>
-            <h1>SB English Tuition</h1>
-            <p>Student Login Portal</p>
+        <div class="logo">
+
+            🎓
+
         </div>
 
-        <form id="studentLoginForm">
+        <h1>SB English Tuition</h1>
 
-            <div class="input-group">
+        <p class="subtitle">
 
-                <label>Student ID</label>
+            Student Login
 
-                <div class="input-box">
+        </p>
 
-                    <i class="fas fa-user"></i>
+        <input
+        type="text"
+        id="studentId"
+        placeholder="Student ID">
 
-                    <input
-                    type="text"
-                    id="studentId"
-                    placeholder="SBET001"
-                    required>
+        <div class="password-box">
 
-                </div>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label>Password</label>
-
-                <div class="input-box">
-
-                    <i class="fas fa-lock"></i>
-
-                    <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter Password"
-                    required>
-
-                    <span id="togglePassword">
-
-                        <i class="fas fa-eye"></i>
-
-                    </span>
-
-                </div>
-
-            </div>
-
+            <input
+            type="password"
+            id="password"
+            placeholder="Password">
 
             <button
-            type="submit"
-            class="login-btn">
+            type="button"
+            id="togglePassword">
 
-                Login
+            👁
 
             </button>
 
-        </form>
-
-        <div class="login-footer">
-
-            <p><b>Student ID:</b> SBET001</p>
-
-            <p>Password can be changed after first login.</p>
-
         </div>
+
+        <button
+        id="loginBtn">
+
+        Login
+
+        </button>
+
+        <button
+        id="forgotBtn"
+        class="link-btn">
+
+        Forgot Password?
+
+        </button>
+
+        <p id="loginMsg"></p>
 
     </div>
 
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
+
 <script src="js/student-login.js"></script>
 
 </body>
+
 </html>
